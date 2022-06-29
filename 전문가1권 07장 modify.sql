@@ -1,7 +1,7 @@
 /*
-	Àü¹®°¡·Î °¡´Â Áö¸§±æ 1 / °³¹ßÀÚ¿ë
-	Á¦ 7Àå ¼Ò½º ½ºÅ©¸³Æ® 
-	Á¤¿øÇõ 2000.1
+	ì „ë¬¸ê°€ë¡œ ê°€ëŠ” ì§€ë¦„ê¸¸ 1 / ê°œë°œìžìš©
+	ì œ 7ìž¥ ì†ŒìŠ¤ ìŠ¤í¬ë¦½íŠ¸ 
+	ì •ì›í˜ 2000.1
 */
 
 
@@ -16,11 +16,11 @@ CREATE TABLE t1
 )
 GO
 
-INSERT t1 VALUES (1, 'ÀÌÃ¶¹Î', '¼­¿ï')
+INSERT t1 VALUES (1, 'ì´ì² ë¯¼', 'ì„œìš¸')
 SELECT * FROM t1
 
 
-INSERT t1 VALUES (2, '¼Û±º¼·', '¼­¿ï')
+INSERT t1 VALUES (2, 'ì†¡êµ°ì„­', 'ì„œìš¸')
 SELECT * FROM t1
 
 
@@ -31,23 +31,23 @@ CREATE TABLE t1
 (
 	id	int	IDENTITY		PRIMARY KEY
 ,	name	char(20)	NOT NULL
-,	city	char(10)	DEFAULT '¼­¿ï'
+,	city	char(10)	DEFAULT 'ì„œìš¸'
 ,	photo	image	NULL
 )
 GO
 
-INSERT t1 VALUES ('°­Á¤Èñ', DEFAULT, NULL)
+INSERT t1 VALUES ('ê°•ì •í¬', DEFAULT, NULL)
 SELECT * FROM t1
 
-INSERT t1 (name) VALUES ('¹ÚÁ¤±Ô')
-INSERT t1 (name) VALUES ('ÃÖ¼Ò¿µ')
-INSERT t1 (name) VALUES ('È«ÁöÇö')
+INSERT t1 (name) VALUES ('ë°•ì •ê·œ')
+INSERT t1 (name) VALUES ('ìµœì†Œì˜')
+INSERT t1 (name) VALUES ('í™ì§€í˜„')
 SELECT * FROM t1
 GO
 
 
 
-INSERT t1 (city, name) VALUES ('°­¸ª', '±è¿µÁø')	        --ÄÃ·³ ¼ø¼­ ÁÖÀÇ
+INSERT t1 (city, name) VALUES ('ê°•ë¦‰', 'ê¹€ì˜ì§„')	        --ì»¬ëŸ¼ ìˆœì„œ ì£¼ì˜
 
 
 
@@ -72,7 +72,7 @@ INSERT t1 DEFAULT VALUES
 CREATE TABLE tblDef (
 	id	INT	IDENTITY
 ,	TIMESTAMP
-,	[ÀÔ·ÂÀÏÀÚ]	DATETIME	NOT NULL
+,	[ìž…ë ¥ì¼ìž]	DATETIME	NOT NULL
 		DEFAULT	getdate()
 ,	photo	IMAGE	NULL
 )
@@ -91,14 +91,14 @@ CREATE TABLE t1
 (
 	id	int	IDENTITY		PRIMARY KEY
 ,	name	char(20)	NOT NULL
-,	city	char(10)	DEFAULT '¼­¿ï'
+,	city	char(10)	DEFAULT 'ì„œìš¸'
 ,	photo	image	NULL
 )
 GO
 
-INSERT t1 VALUES ('Á¤¼¼È­', DEFAULT, NULL)
-INSERT t1 (name) VALUES ('±èÇöÈñ')
-INSERT t1 (name) VALUES ('¹Ú¿µ¸ñ')
+INSERT t1 VALUES ('ì •ì„¸í™”', DEFAULT, NULL)
+INSERT t1 (name) VALUES ('ê¹€í˜„í¬')
+INSERT t1 (name) VALUES ('ë°•ì˜ëª©')
 SELECT * FROM t1
 GO
 
@@ -139,8 +139,8 @@ SELECT * FROM t1
 
 
 BEGIN TRAN
-	DELETE ¹«ÁöÁß¿äÇÑÅ×ÀÌºí
-	SELECT * FROM ¹«ÁöÁß¿äÇÑÅ×ÀÌºí
+	DELETE ë¬´ì§€ì¤‘ìš”í•œí…Œì´ë¸”
+	SELECT * FROM ë¬´ì§€ì¤‘ìš”í•œí…Œì´ë¸”
 ROLLBACK TRAN 
 
 ROLLBACK 
@@ -161,7 +161,7 @@ BEGIN TRAN
 	)
 	SELECT * FROM t1
 	SELECT * FROM t2
-ROLLBACK TRAN 	--¶Ç´Â COMMIT TRAN		
+ROLLBACK TRAN 	--ë˜ëŠ” COMMIT TRAN		
 
 
 BEGIN TRAN
@@ -186,7 +186,7 @@ SELECT * FROM t1
 SELECT * FROM t2
 
 update t2
-set	name = 'kkk', city = 'Á¦ÁÖ'
+set	name = 'kkk', city = 'ì œì£¼'
 where 	id = 3
 
 SELECT * FROM t2
@@ -201,7 +201,7 @@ BEGIN TRAN
 	FROM titles
 	WHERE title_id = 'BU1032'
 ROLLBACK 
--- ¶Ç´Â COMMIT
+-- ë˜ëŠ” COMMIT
 
 
 
@@ -231,8 +231,8 @@ WHERE tid = sid
 
 
 
-UPDATE target SET tValue = 0	-- 0À¸·Î ÃÊ±âÈ­ ÇÑ´Ù.
-INSERT source VALUES(1, 20)	-- »õ·Î 20ÀÌ¶õ °ªÀ» source Å×ÀÌºí¿¡ ÀÔ·Â
+UPDATE target SET tValue = 0	-- 0ìœ¼ë¡œ ì´ˆê¸°í™” í•œë‹¤.
+INSERT source VALUES(1, 20)	-- ìƒˆë¡œ 20ì´ëž€ ê°’ì„ source í…Œì´ë¸”ì— ìž…ë ¥
 
 SELECT * FROM target
 SELECT * FROM source
@@ -264,9 +264,9 @@ GO
 
 
 
-INSERT source VALUES(2, 10)	-- »õ·Î °ªÀ» source Å×ÀÌºí¿¡ ÀÔ·Â
-INSERT source VALUES(2, 200)	-- »õ·Î °ªÀ» source Å×ÀÌºí¿¡ ÀÔ·Â
-INSERT target VALUES(2, 0)	-- »õ·Î °ªÀ» target Å×ÀÌºí¿¡ ÀÔ·Â
+INSERT source VALUES(2, 10)	-- ìƒˆë¡œ ê°’ì„ source í…Œì´ë¸”ì— ìž…ë ¥
+INSERT source VALUES(2, 200)	-- ìƒˆë¡œ ê°’ì„ source í…Œì´ë¸”ì— ìž…ë ¥
+INSERT target VALUES(2, 0)	-- ìƒˆë¡œ ê°’ì„ target í…Œì´ë¸”ì— ìž…ë ¥
 UPDATE target SET tValue = 0
 SELECT * FROM target
 SELECT * FROM source
@@ -298,7 +298,7 @@ GO
 
 
 
-USE pubs	-- ÁÖÀÇ!
+USE pubs	-- ì£¼ì˜!
 GO
 BEGIN TRAN
 	--1)

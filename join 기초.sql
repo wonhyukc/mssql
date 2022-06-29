@@ -1,42 +1,42 @@
 use tempdb
 go
 
-create table ÇĞ»ı(ÇĞ¹ø int, ÇĞ°ú int)
+create table í•™ìƒ(í•™ë²ˆ int, í•™ê³¼ int)
 go
-create table ÇĞ°ú (ÇĞ°ú int)
-go
-
-insert ÇĞ»ı values (1, 1)
-insert ÇĞ»ı values (2, 1)
-insert ÇĞ»ı values (3, 2)
-insert ÇĞ»ı values (99, 4)
+create table í•™ê³¼ (í•™ê³¼ int)
 go
 
+insert í•™ìƒ values (1, 1)
+insert í•™ìƒ values (2, 1)
+insert í•™ìƒ values (3, 2)
+insert í•™ìƒ values (99, 4)
+go
 
-insert ÇĞ°ú values (1)
-insert ÇĞ°ú values (2)
-insert ÇĞ°ú values (3)
+
+insert í•™ê³¼ values (1)
+insert í•™ê³¼ values (2)
+insert í•™ê³¼ values (3)
 go
 
 select *
-from ÇĞ»ı s	inner join ÇĞ°ú m	on s.ÇĞ°ú = m.ÇĞ°ú
+from í•™ìƒ s	inner join í•™ê³¼ m	on s.í•™ê³¼ = m.í•™ê³¼
 
 
 
 select *
-from ÇĞ»ı s	right outer join ÇĞ°ú m	on s.ÇĞ°ú = m.ÇĞ°ú
+from í•™ìƒ s	right outer join í•™ê³¼ m	on s.í•™ê³¼ = m.í•™ê³¼
 
 select *
-from ÇĞ»ı s	left outer join ÇĞ°ú m	on s.ÇĞ°ú = m.ÇĞ°ú
-where m.ÇĞ°ú is null
+from í•™ìƒ s	left outer join í•™ê³¼ m	on s.í•™ê³¼ = m.í•™ê³¼
+where m.í•™ê³¼ is null
 
 select *
-from ÇĞ»ı s	left outer join ÇĞ°ú m	on s.ÇĞ°ú = m.ÇĞ°ú
-where s.ÇĞ°ú is null
+from í•™ìƒ s	left outer join í•™ê³¼ m	on s.í•™ê³¼ = m.í•™ê³¼
+where s.í•™ê³¼ is null
 
 
 
 
 
 select *
-from ÇĞ»ı s	full outer join ÇĞ°ú m	on s.ÇĞ°ú = m.ÇĞ°ú
+from í•™ìƒ s	full outer join í•™ê³¼ m	on s.í•™ê³¼ = m.í•™ê³¼

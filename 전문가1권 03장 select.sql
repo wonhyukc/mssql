@@ -1,7 +1,7 @@
 /*
-	Àü¹®°¡·Î °¡´Â Áö¸§±æ 1 / °³¹ßÀÚ¿ë
-	Á¦ 3Àå ¼Ò½º ½ºÅ©¸³Æ® 
-	Á¤¿øÇõ 2000.1
+	ì „ë¬¸ê°€ë¡œ ê°€ëŠ” ì§€ë¦„ê¸¸ 1 / ê°œë°œììš©
+	ì œ 3ì¥ ì†ŒìŠ¤ ìŠ¤í¬ë¦½íŠ¸ 
+	ì •ì›í˜ 2000.1
 */
 
 use pubs
@@ -22,38 +22,38 @@ SELECT title_id, pub_id, price, title
 FROM titles
 
 
-SELECT 'Ã¥ ¹øÈ£:' as ³»°¡¸¸µçÄÃ·³, title_id, pub_id, price, title 
+SELECT 'ì±… ë²ˆí˜¸:' as ë‚´ê°€ë§Œë“ ì»¬ëŸ¼, title_id, pub_id, price, title 
 FROM titles
 
 
 SELECT 	title_id  Title_no
-	, pub_id [ÃâÆÇ»ç ¹øÈ£]  
+	, pub_id [ì¶œíŒì‚¬ ë²ˆí˜¸]  
 	, price
 	, title 
 FROM titles
 
 
-SELECT 	title_id AS Title_no , pub_id AS [ÃâÆÇ»ç ¹øÈ£] , price, title 
+SELECT 	title_id AS Title_no , pub_id AS [ì¶œíŒì‚¬ ë²ˆí˜¸] , price, title 
 FROM titles
 
 
-SELECT title_id AS Title_no, pub_id AS 'ÃâÆÇ»ç ¹øÈ£', price, title 
+SELECT title_id AS Title_no, pub_id AS 'ì¶œíŒì‚¬ ë²ˆí˜¸', price, title 
 FROM titles
 ---
-SELECT title_id AS Title_no, pub_id AS [(ÃâÆÇ»ç ¹øÈ£)], price, title 
+SELECT title_id AS Title_no, pub_id AS [(ì¶œíŒì‚¬ ë²ˆí˜¸)], price, title 
 FROM titles
 
 
-SELECT 	title_id Title_no, pub_id [ÃâÆÇ»ç ¹øÈ£] , price, title 
+SELECT 	title_id Title_no, pub_id [ì¶œíŒì‚¬ ë²ˆí˜¸] , price, title 
 FROM titles
 ------
-SELECT 	Title_no = title_id, [ÃâÆÇ»ç ¹øÈ£] = pub_id, price, title 
+SELECT 	Title_no = title_id, [ì¶œíŒì‚¬ ë²ˆí˜¸] = pub_id, price, title 
 FROM titles
 
---//¿¬½À2
+--//ì—°ìŠµ2
 
-SELECT  city as µµ½Ã, state  FROM  publishers
-SELECT  city µµ½Ã, state  FROM  publishers
+SELECT  city as ë„ì‹œ, state  FROM  publishers
+SELECT  city ë„ì‹œ, state  FROM  publishers
 
 --3. 
 sp_help publishers
@@ -63,22 +63,22 @@ sp_columns publishers
 SELECT  *  FROM  sales
 
 --6.
-SELECT  title_id, stor_id, ord_date, '¼ö·®:', qty
+SELECT  title_id, stor_id, ord_date, 'ìˆ˜ëŸ‰:', qty
 FROM  sales
 
 
 
---//º¯¼ö
+--//ë³€ìˆ˜
 DECLARE @id INT, @name CHAR(10)
 SET @id = 0
-SET @name = 'À±¼®ºó'
+SET @name = 'ìœ¤ì„ë¹ˆ'
 SELECT @id, @name
 
 
 
 
---// ÀÚ·áÇü
---³¯Â¥
+--// ìë£Œí˜•
+--ë‚ ì§œ
 declare @a datetime
 set @a = '2002.8.10'
 select @a
@@ -114,7 +114,7 @@ select @b + '*'
 
 
 
---//SELECT¿¡¼­ÀÇ ÀÚ·áÇü ¹Ù²Ù±â
+--//SELECTì—ì„œì˜ ìë£Œí˜• ë°”ê¾¸ê¸°
 
 select 1 + 3 
 select 'a' + 'b'
@@ -129,29 +129,29 @@ select convert(decimal(10, 8) , 10) / 3
 
 --1)
 SELECT 	title_id AS Title_no
-	, pub_id AS 'ÃâÆÇ»ç ¹øÈ£'  
+	, pub_id AS 'ì¶œíŒì‚¬ ë²ˆí˜¸'  
 	, price
-	, CONVERT(char(30), title) AS 'ÁÙÀÎ Á¦¸ñ'
-	, convert(varchar(10), price) + '¿ø'
+	, CONVERT(char(30), title) AS 'ì¤„ì¸ ì œëª©'
+	, convert(varchar(10), price) + 'ì›'
 FROM titles
 
 --2)
 SELECT 	title_id AS Title_no
-	, pub_id AS 'ÃâÆÇ»ç ¹øÈ£'  
+	, pub_id AS 'ì¶œíŒì‚¬ ë²ˆí˜¸'  
 	, price
-	, SUBSTRING(title, 1, 30) AS 'ÁÙÀÎ Á¦¸ñ'
+	, SUBSTRING(title, 1, 30) AS 'ì¤„ì¸ ì œëª©'
 FROM titles
 
 SELECT 	title_id AS Title_no
-	, pub_id AS 'ÃâÆÇ»ç ¹øÈ£'  
-	, price * 1.1 AS '°¡°İ(ºÎ°¡¼¼ Æ÷ÇÔ)'
-	, SUBSTRING(title, 1, 30) AS 'ÁÙÀÎ Á¦¸ñ'
+	, pub_id AS 'ì¶œíŒì‚¬ ë²ˆí˜¸'  
+	, price * 1.1 AS 'ê°€ê²©(ë¶€ê°€ì„¸ í¬í•¨)'
+	, SUBSTRING(title, 1, 30) AS 'ì¤„ì¸ ì œëª©'
 FROM titles
 
 SELECT 	title_id AS Title_no
-	, pub_id AS 'ÃâÆÇ»ç ¹øÈ£'  
-	, price * 1.1 AS '°¡°İ(ºÎ°¡¼¼ Æ÷ÇÔ)'
-	, CAST ( title AS char(30) ) AS [ÁÙÀÎ Á¦¸ñ]
+	, pub_id AS 'ì¶œíŒì‚¬ ë²ˆí˜¸'  
+	, price * 1.1 AS 'ê°€ê²©(ë¶€ê°€ì„¸ í¬í•¨)'
+	, CAST ( title AS char(30) ) AS [ì¤„ì¸ ì œëª©]
 FROM titles
 
 
@@ -172,10 +172,10 @@ from titles
 
 
 SELECT SUBSTRING('abcdef', 1, 2)  
-SELECT SUBSTRING('ÇÑ±Ûabcdµ¥ÀÌÅ¸', 1, 2)  --1)
-SELECT SUBSTRING('ÇÑ±Ûabcdµ¥ÀÌÅ¸', 3, 3)  --2)
+SELECT SUBSTRING('í•œê¸€abcdë°ì´íƒ€', 1, 2)  --1)
+SELECT SUBSTRING('í•œê¸€abcdë°ì´íƒ€', 3, 3)  --2)
 
-SELECT REPLICATE('¹İº¹', 10)
+SELECT REPLICATE('ë°˜ë³µ', 10)
 
 SELECT STUFF('123456', 3, 2, 'abcde')
 SELECT replace('123456', '34', 'abcde')
@@ -187,8 +187,8 @@ from titles
 SELECT GETDATE()
 SELECT year(GETDATE()), month (getdate()), day(getdate())
 SELECT year(GETDATE())+1, getdate() + 1
-2002³â 8¿ù 12ÀÏ 
-SELECT year(GETDATE()) + '³â'--, month (getdate()), day(getdate())
+2002ë…„ 8ì›” 12ì¼ 
+SELECT year(GETDATE()) + 'ë…„'--, month (getdate()), day(getdate())
 SELECT CONVERT( varchar(30), GETDATE(), 9)
 
 SELECT CONVERT( varchar(30), GETDATE(), 2)
@@ -238,7 +238,7 @@ SELECT title_id, price
 FROM titles
 WHERE price = NULL
 
---- <> NOT NULLÀº IS NOT NULL°ú °°Áö ¾Ê´Ù.
+--- <> NOT NULLì€ IS NOT NULLê³¼ ê°™ì§€ ì•Šë‹¤.
 SELECT title_id, price
 FROM titles
 WHERE price <> NULL
@@ -251,7 +251,7 @@ WHERE price IS NOT NULL
 
 
 
---//Á¤·Ä
+--//ì •ë ¬
 
 SELECT title_id, qty 
 FROM sales
@@ -298,7 +298,7 @@ SELECT TOP 25 PERCENT WITH TIES title_id, qty
 FROM sales 
 ORDER BY qty DESC
 
---//¹üÀ§
+--//ë²”ìœ„
 SELECT title_id, qty
 FROM sales
 WHERE qty BETWEEN 10 AND 20
@@ -309,7 +309,7 @@ FROM sales
 WHERE qty >= 10 AND qty <= 20
 ORDER BY qty
 
---//¸ñ·Ï
+--//ëª©ë¡
 
 SELECT title_id, qty
 FROM sales
@@ -320,7 +320,7 @@ SELECT title_id, qty
 FROM sales
 WHERE title_id = 'BU1032'  OR  'BU1111'  OR  'MC3021'
 
---¹®ÀÚ¿­
+--ë¬¸ìì—´
 SELECT title_id, title
 FROM titles
 WHERE title LIKE '%computer%'
@@ -333,10 +333,10 @@ WHERE title LIKE 'computer%'
 SELECT PATINDEX('%Mi%', 'James Mike')
 SELECT PATINDEX('M[^c]%', 'McAthur')
 SELECT PATINDEX('M[^c]%', 'Mike')
-SELECT PATINDEX('M[^c]%', 'M') 	-- ÁÖÀÇ! Æ²¸®±â ½±´Ù.
+SELECT PATINDEX('M[^c]%', 'M') 	-- ì£¼ì˜! í‹€ë¦¬ê¸° ì‰½ë‹¤.
 
 
---Áßº¹µÈ Çà
+--ì¤‘ë³µëœ í–‰
 
 SELECT title_id
 FROM sales
@@ -359,17 +359,17 @@ FROM titles
 WHERE price < 20.00 / 1.1
 ORDER BY price
 
-SELECT title_id, pubdate, DATEPART(yy, pubdate) AS [¿¬µµ]
+SELECT title_id, pubdate, DATEPART(yy, pubdate) AS [ì—°ë„]
 FROM titles
 WHERE DATEPART(yy, pubdate) = 1991
 
 
-SELECT title_id, pubdate, YEAR (pubdate) AS [¿¬µµ]
+SELECT title_id, pubdate, YEAR (pubdate) AS [ì—°ë„]
 FROM titles
 WHERE YEAR (pubdate)  = 1991
 
 
-SELECT title_id, pubdate, YEAR (pubdate) AS [¿¬µµ]
+SELECT title_id, pubdate, YEAR (pubdate) AS [ì—°ë„]
 FROM titles
 WHERE pubdate BETWEEN '1991.1.1' AND '1991.12.31'
 

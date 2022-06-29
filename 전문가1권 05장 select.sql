@@ -1,4 +1,4 @@
---//»ó°ü°ü°èÀÇ ÇÏÀ§ ÁúÀÇ(Correlated subquery)
+--//ìƒê´€ê´€ê³„ì˜ í•˜ìœ„ ì§ˆì˜(Correlated subquery)
 
 SELECT stor_name, 'Title' = convert(char(30),t.title), qty
 FROM sales s, titles t, stores st
@@ -142,10 +142,10 @@ UNION
 SELECT region, count(*) FROM members GROUP BY region
 
 
-select  au_id, au_fname, phone, city, state, 'author' as ±¸ºĞ
+select  au_id, au_fname, phone, city, state, 'author' as êµ¬ë¶„
 from authors
 UNION ALL
-select pub_id, pub_name, null, city, state, 'publisher' as ±¸ºĞ
+select pub_id, pub_name, null, city, state, 'publisher' as êµ¬ë¶„
 from publishers
 
 

@@ -1,27 +1,27 @@
 /*
-	Àü¹®°¡·Î °¡´Â Áö¸§±æ 1 / °³¹ßÀÚ¿ë
-	Á¦ 9Àå ¼Ò½º ½ºÅ©¸³Æ® 
-	Á¤¿øÇõ 2000.1
+	ì „ë¬¸ê°€ë¡œ ê°€ëŠ” ì§€ë¦„ê¸¸ 1 / ê°œë°œìžìš©
+	ì œ 9ìž¥ ì†ŒìŠ¤ ìŠ¤í¬ë¦½íŠ¸ 
+	ì •ì›í˜ 2000.1
 */
 
 
-print '¸Þ½ÃÁö'
-select '¸Þ½ÃÁö' 
+print 'ë©”ì‹œì§€'
+select 'ë©”ì‹œì§€' 
 
 
 
 DECLARE @id	int
 ,	@name	char(20)
-SELECT @id = 10		-- ÃÊ±âÈ­ ÇÑ´Ù.
-SELECT @id		-- ÃÊ±âÈ­ ÇÑ °ªÀ» Ãâ·ÂÇÑ´Ù.
+SELECT @id = 10		-- ì´ˆê¸°í™” í•œë‹¤.
+SELECT @id		-- ì´ˆê¸°í™” í•œ ê°’ì„ ì¶œë ¥í•œë‹¤.
 SELECT @id, 'A' 		--1)
 go
 
 DECLARE @id	int
 ,	@name	char(20)
-SELECT @id = 10		-- ÃÊ±âÈ­ ÇÑ´Ù.
-SELECT @id		-- ÃÊ±âÈ­ ÇÑ °ªÀ» Ãâ·ÂÇÑ´Ù.
-PRINT @id, 'A' -- Çã¿ëµÇÁö ¾Ê´Â´Ù.
+SELECT @id = 10		-- ì´ˆê¸°í™” í•œë‹¤.
+SELECT @id		-- ì´ˆê¸°í™” í•œ ê°’ì„ ì¶œë ¥í•œë‹¤.
+PRINT @id, 'A' -- í—ˆìš©ë˜ì§€ ì•ŠëŠ”ë‹¤.
 GO
 
 
@@ -31,13 +31,13 @@ select @var1 +'.....'
 go
 
 
-DECLARE¡¦
-SET¡¦
+DECLAREâ€¦
+SETâ€¦
 table_loop:                            --1)
 .
 .
 .
-IF ¡¦¡¦¡¦ GOTO table_loop                --2) 
+IF â€¦â€¦â€¦ GOTO table_loop                --2) 
 .
 
 
@@ -45,18 +45,18 @@ IF ¡¦¡¦¡¦ GOTO table_loop                --2)
 
 IF @begin > @end
 	BEGIN
-		SELECT '½ÃÀÛÀÏÀÚ´Â ³¡ ³¯Â¥º¸´Ù ÀÛ¾Æ¾ß ÇÕ´Ï´Ù.'
+		SELECT 'ì‹œìž‘ì¼ìžëŠ” ë ë‚ ì§œë³´ë‹¤ ìž‘ì•„ì•¼ í•©ë‹ˆë‹¤.'
 		RETURN
 	END
 ELSE 
-	SELECT ¡¦ FROM ¡¦ WHERE date1 BETWEEN @begin AND @end
+	SELECT â€¦ FROM â€¦ WHERE date1 BETWEEN @begin AND @end
 
 
 
 
-while Á¶°Ç
+while ì¡°ê±´
 begin
-	whileÁ¶°ÇÀ» ¹þ¾î³¯ Á¶Ä¡
+	whileì¡°ê±´ì„ ë²—ì–´ë‚  ì¡°ì¹˜
 	if ... continue
 	if ... break
 end
@@ -71,7 +71,7 @@ exec sp_help
 
 USE pubs
 DECLARE 	@sql	VARCHAR(8000)
-SET @sql = 'SELECT COUNT(*) FROM '	-- FROM ´ÙÀ½¿¡ ÇÑ Ä­ÀÇ ºó Ä­ÀÌ ÀÖ´Ù.
+SET @sql = 'SELECT COUNT(*) FROM '	-- FROM ë‹¤ìŒì— í•œ ì¹¸ì˜ ë¹ˆ ì¹¸ì´ ìžˆë‹¤.
 SET @sql = @sql + 'titles'
 select @sql
 
@@ -87,15 +87,15 @@ set nocount off
 
 
 -------------------------
-SELECT NULLIF(2,3)	--2¸¦ ¸®ÅÏ
-SELECT NULLIF(3,3)	--³ÎÀ» ¸®ÅÏ
+SELECT NULLIF(2,3)	--2ë¥¼ ë¦¬í„´
+SELECT NULLIF(3,3)	--ë„ì„ ë¦¬í„´
 
 
-SELECT COALESCE(NULL, 1, 2)	-- 1À» ¸®ÅÏ
-SELECT COALESCE(1, NULL, 2)	-- 1À» ¸®ÅÏ
-SELECT COALESCE(NULL, NULL, 1)	-- 1À» ¸®ÅÏ
+SELECT COALESCE(NULL, 1, 2)	-- 1ì„ ë¦¬í„´
+SELECT COALESCE(1, NULL, 2)	-- 1ì„ ë¦¬í„´
+SELECT COALESCE(NULL, NULL, 1)	-- 1ì„ ë¦¬í„´
 go
-SELECT COALESCE(NULL, NULL, NULL)	-- ÀÌ°Ç ¾ó¸¶ÀÏ±î?
+SELECT COALESCE(NULL, NULL, NULL)	-- ì´ê±´ ì–¼ë§ˆì¼ê¹Œ?
 go
 
 
@@ -112,7 +112,7 @@ CREATE TABLE t (id int, name char(1))
 GO
 ALTER TABLE t
 	DROP COLUMN name
---GO°¡ ÀÖ¾î¾ß ÇÑ´Ù.
+--GOê°€ ìžˆì–´ì•¼ í•œë‹¤.
 INSERT t VALUES (1)
 go
 
@@ -122,12 +122,12 @@ SELECT COUNT(*) FROM table2
 SELECT COUNT(*) FROM table3
 
 
-SELECT name FROM sysobjects WHERE type = 'U'	--6.5 ¹æ½Ä
+SELECT name FROM sysobjects WHERE type = 'U'	--6.5 ë°©ì‹
 
 
 SET NOCOUNT ON
 DECLARE @name varchar(80)
-SELECT @name = ' '	-- ÃÊ±âÈ­
+SELECT @name = ' '	-- ì´ˆê¸°í™”
 WHILE @name IS NOT NULL
 BEGIN
 	SELECT @name = MIN(table_name) FROM information_schema.tables 
@@ -135,7 +135,7 @@ BEGIN
 -- 1)		AND table_name > @name
  	IF @name IS NOT NULL
 	BEGIN		
-		SELECT '°¡Á®¿Â Å×ÀÌºí ÀÌ¸§ : ' + @name
+		SELECT 'ê°€ì ¸ì˜¨ í…Œì´ë¸” ì´ë¦„ : ' + @name
 -- 2)		EXEC ('SELECT COUNT(*) FROM [' + @name+']')
 	END
 END
