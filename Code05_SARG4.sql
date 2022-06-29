@@ -3,7 +3,7 @@ create index ix on c (charge_amt)
 
 select * from c where charge_amt not between 1 and 4999
 
-WHERE ºÎ¼­ÄÚµå = 3	--ºÎ¼­ÄÚµå: char(3) 
+WHERE ë¶€ì„œì½”ë“œ = 3	--ë¶€ì„œì½”ë“œ: char(3) 
 
 drop table m
 select * into m from member
@@ -11,7 +11,7 @@ update m set city = '3' where member_no < 10
 create index ix on m (city)
 go
 
-                     [Credit].[dbo].[m].city = ½ºÄ®¶ó ¿¬»êÀÚ('3')
+                     [Credit].[dbo].[m].city = ìŠ¤ì¹¼ë¼ ì—°ì‚°ì('3')
 CONVERT_IMPLICIT(int,[Credit].[dbo].[m].[city],0)=(3)
 
 select * from m where city = '3'
@@ -20,17 +20,17 @@ select * from m where convert(int, city) = 3
 
 
 
-WHERE ºÎ¼­ÄÚµå = 3	--ºÎ¼­ÄÚµå: char(3) 
+WHERE ë¶€ì„œì½”ë“œ = 3	--ë¶€ì„œì½”ë“œ: char(3) 
 
-WHERE char_type = N'À¯´ÏÄÚµå'
+WHERE char_type = N'ìœ ë‹ˆì½”ë“œ'
 
-WHERE ±¸ºĞÄÚµå = 1	--±¸ºĞÄÚµå: bit
+WHERE êµ¬ë¶„ì½”ë“œ = 1	--êµ¬ë¶„ì½”ë“œ: bit
 
-WHERE ³¯Â¥ = 19790314	--³¯Â¥: char(8)
+WHERE ë‚ ì§œ = 19790314	--ë‚ ì§œ: char(8)
 
-WHERE ³¯Â¥ = '19790314'
-@sql = '¡¦ WHERE ³¯Â¥ = ' + @°Ë»öÀÏ 
-@sql = '¡¦ WHERE ³¯Â¥= ' + '''@°Ë»öÀÏ'''
+WHERE ë‚ ì§œ = '19790314'
+@sql = 'â€¦ WHERE ë‚ ì§œ = ' + @ê²€ìƒ‰ì¼ 
+@sql = 'â€¦ WHERE ë‚ ì§œ= ' + '''@ê²€ìƒ‰ì¼'''
 select SQRT(3)
 SELECT * FROM charge WHERE charge_amt < SQRT(3)
 SELECT * FROM charge WHERE charge_amt < CONVERT(money, SQRT(3))
@@ -42,17 +42,17 @@ CONVERT_IMPLICIT(float(53),[Credit].[dbo].[charge].[charge_amt],0)<sqrt(CONVERT_
 
 [Credit].[dbo].[charge].[charge_amt]<CONVERT(money,sqrt(CONVERT_IMPLICIT(float(53),[@1],0)),0)
 
-°Ë»ö Å°[1]: ½ÃÀÛ: [Credit].[dbo].[charge].charge_amt > ½ºÄ®¶ó ¿¬»êÀÚ([Expr1004]), ³¡: [Credit].[dbo].[charge].charge_amt < ½ºÄ®¶ó ¿¬»êÀÚ([Expr1005])
+ê²€ìƒ‰ í‚¤[1]: ì‹œì‘: [Credit].[dbo].[charge].charge_amt > ìŠ¤ì¹¼ë¼ ì—°ì‚°ì([Expr1004]), ë: [Credit].[dbo].[charge].charge_amt < ìŠ¤ì¹¼ë¼ ì—°ì‚°ì([Expr1005])
 */
 
 
 
-DECLARE @¸í·É¹® varchar(3000)
-,	@½ÃÀÛÀÏ varchar(8)
-SET @½ÃÀÛÀÏ = '20061024'
-SET @¸í·É¹® = 'SELECT ... FROM ... WHERE ÆÇ¸ÅÀÏ = '
-SET @¸í·É¹® = @¸í·É¹® + @½ÃÀÛÀÏ
-SET @¸í·É¹® = @¸í·É¹® + '''+ @½ÃÀÛÀÏ+ '''
+DECLARE @ëª…ë ¹ë¬¸ varchar(3000)
+,	@ì‹œì‘ì¼ varchar(8)
+SET @ì‹œì‘ì¼ = '20061024'
+SET @ëª…ë ¹ë¬¸ = 'SELECT ... FROM ... WHERE íŒë§¤ì¼ = '
+SET @ëª…ë ¹ë¬¸ = @ëª…ë ¹ë¬¸ + @ì‹œì‘ì¼
+SET @ëª…ë ¹ë¬¸ = @ëª…ë ¹ë¬¸ + '''+ @ì‹œì‘ì¼+ '''
 
 
 
@@ -65,8 +65,8 @@ dbcc show_statistics (c, cx)
 
 select * from c where charge_dt < '2005-11-14 17:09:48'
 
-declare @½ÃÀÛÀÏ datetime = '2005-11-14 17:09:48'
-select * from c where charge_dt < @½ÃÀÛÀÏ
+declare @ì‹œì‘ì¼ datetime = '2005-11-14 17:09:48'
+select * from c where charge_dt < @ì‹œì‘ì¼
 
 select * from c where charge_dt between '2004.1.1' and '2005-11-14 17:09:48'
 select DATEDIFF(s, '2004.1.1' , '2005-11-14 17:09:48')
@@ -75,7 +75,7 @@ select * from c where charge_dt between '2004.1.1' and DATEADD (s, 59072988, '20
 
 
 
-declare @½ÃÀÛÀÏ datetime = '2005-11-14 17:09:48'
-select * from c where charge_dt between @½ÃÀÛÀÏ and @½ÃÀÛÀÏ + 7
+declare @ì‹œì‘ì¼ datetime = '2005-11-14 17:09:48'
+select * from c where charge_dt between @ì‹œì‘ì¼ and @ì‹œì‘ì¼ + 7
 
 select * from c where charge_dt >= GETDATE() - 7

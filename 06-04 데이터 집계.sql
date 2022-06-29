@@ -1,26 +1,26 @@
 --*
---* 6.4 µ¥ÀÌÅÍ Áı°è
+--* 6.4 ë°ì´í„° ì§‘ê³„
 --*
 
 
 
 --*
---* A. ±âº»ÀûÀÎ µ¥ÀÌÅÍ Áı°è
+--* A. ê¸°ë³¸ì ì¸ ë°ì´í„° ì§‘ê³„
 --*
 
 
--- 1) Áı°è ÇÔ¼ö »ç¿ë
+-- 1) ì§‘ê³„ í•¨ìˆ˜ ì‚¬ìš©
 
 USE HRDB
 GO
 
--- ±Ù¹« ÁßÀÎ Á÷¿øµéÀÇ ±Ş¿©ÀÇ ÇÕ ±¸ÇÏ±â
+-- ê·¼ë¬´ ì¤‘ì¸ ì§ì›ë“¤ì˜ ê¸‰ì—¬ì˜ í•© êµ¬í•˜ê¸°
 SELECT SUM(Salary) AS 'Tot_Salary'
 	FROM dbo.Employee
 	WHERE RetireDate IS NULL
 GO
 
---  ±Ù¹« ÁßÀÎ Á÷¿øµéÀÇ ±Ş¿©ÀÇ ÃÖ´ë°ª, ÃÖ¼Ò°ª, ÃÖ´ë°ª - ÃÖ¼Ò°ªÀ» ±¸ÇÏ´Â Äõ¸®¸¦ ÀÛ¼ºÇÏÀÚ.
+--  ê·¼ë¬´ ì¤‘ì¸ ì§ì›ë“¤ì˜ ê¸‰ì—¬ì˜ ìµœëŒ€ê°’, ìµœì†Œê°’, ìµœëŒ€ê°’ - ìµœì†Œê°’ì„ êµ¬í•˜ëŠ” ì¿¼ë¦¬ë¥¼ ì‘ì„±í•˜ì.
 
 SELECT MAX(Salary) AS 'Max_Salary', MIN(Salary) AS ' Min_Salary',
 			 MAX(Salary) - MIN(Salary) AS ' Diff_Salary'
@@ -29,7 +29,7 @@ SELECT MAX(Salary) AS 'Max_Salary', MIN(Salary) AS ' Min_Salary',
 GO
 
 
--- 2) Áı°è ÇÔ¼ö¿Í NULL °ª ¿¹Á¦
+-- 2) ì§‘ê³„ í•¨ìˆ˜ì™€ NULL ê°’ ì˜ˆì œ
 
 UPDATE dbo.Employee
 	SET Salary = NULL
@@ -51,11 +51,11 @@ SELECT COUNT(Salary) AS 'EmpCount'
 	WHERE RetireDate IS NULL --> 15
 GO
 /*
-°æ°í: Áı°è ¶Ç´Â ´Ù¸¥ SET ÀÛ¾÷¿¡ ÀÇÇØ Null °ªÀÌ Á¦°ÅµÇ¾ú½À´Ï´Ù.
+ê²½ê³ : ì§‘ê³„ ë˜ëŠ” ë‹¤ë¥¸ SET ì‘ì—…ì— ì˜í•´ Null ê°’ì´ ì œê±°ë˜ì—ˆìŠµë‹ˆë‹¤.
 */
 
--- ±Ù¹« ÁßÀÎ Á÷¿øµéÀÇ ±Ş¿©ÀÇ Æò±ÕÀ» ±¸ÇÏ´Â Äõ¸®¸¦ ÀÛ¼ºÇÏ°í ÀÖ´Ù. 
--- ´ÙÀ½ µÎ Äõ¸®ÀÇ Â÷ÀÌÁ¡À» ¼³¸íÇÏÀÚ.
+-- ê·¼ë¬´ ì¤‘ì¸ ì§ì›ë“¤ì˜ ê¸‰ì—¬ì˜ í‰ê· ì„ êµ¬í•˜ëŠ” ì¿¼ë¦¬ë¥¼ ì‘ì„±í•˜ê³  ìˆë‹¤. 
+-- ë‹¤ìŒ ë‘ ì¿¼ë¦¬ì˜ ì°¨ì´ì ì„ ì„¤ëª…í•˜ì.
 
 SELECT SUM(Salary) / COUNT(EmpID) AS 'Avg_Salary'
 	FROM dbo.Employee
@@ -67,41 +67,41 @@ SELECT SUM(Salary) / COUNT(Salary) AS 'Avg_Salary'
 	WHERE RetireDate IS NULL --> 6,060
 GO
 
--- Âü°í 
+-- ì°¸ê³  
 SELECT AVG(Salary) AS 'Avg_Salary'
 	FROM dbo.Employee
 	WHERE RetireDate IS NULL --> 6,060
 GO
  
 
--- 3) ±×·ìº° Áı°è: GROUP BY
+-- 3) ê·¸ë£¹ë³„ ì§‘ê³„: GROUP BY
 
--- ºÎ¼­º° ±Ù¹« ÁßÀÎ Á÷¿ø ¼ö ±¸ÇÏ±â
+-- ë¶€ì„œë³„ ê·¼ë¬´ ì¤‘ì¸ ì§ì› ìˆ˜ êµ¬í•˜ê¸°
 SELECT DeptID, COUNT(*) AS 'Emp_Count'
 	FROM dbo.Employee
 	WHERE RetireDate IS NULL
 	GROUP BY DeptID
 GO
 
--- ½ÇÆĞÇÏ´Â GROUP BY ¹®
+-- ì‹¤íŒ¨í•˜ëŠ” GROUP BY ë¬¸
 SELECT DeptID, EmpName, COUNT(*) AS 'Emp_Count'
 	FROM dbo.Employee
 	WHERE RetireDate IS NULL
 	GROUP BY DeptID
 GO
 /*
-¸Ş½ÃÁö 8120, ¼öÁØ 16, »óÅÂ 1, ÁÙ 2
-¿­ 'dbo.Employee.EmpName'ÀÌ(°¡) Áı°è ÇÔ¼ö³ª GROUP BY Àı¿¡ ¾øÀ¸¹Ç·Î SELECT ¸ñ·Ï¿¡¼­ »ç¿ëÇÒ ¼ö ¾ø½À´Ï´Ù.
+ë©”ì‹œì§€ 8120, ìˆ˜ì¤€ 16, ìƒíƒœ 1, ì¤„ 2
+ì—´ 'dbo.Employee.EmpName'ì´(ê°€) ì§‘ê³„ í•¨ìˆ˜ë‚˜ GROUP BY ì ˆì— ì—†ìœ¼ë¯€ë¡œ SELECT ëª©ë¡ì—ì„œ ì‚¬ìš©í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤.
 */
 
--- ºÎ¼­º° ±Ù¹«ÇÏ´Â Á÷¿øÀÇ ±Ş¿©ÀÇ ÇÕÀ» ±¸ÇÏÀÚ.
+-- ë¶€ì„œë³„ ê·¼ë¬´í•˜ëŠ” ì§ì›ì˜ ê¸‰ì—¬ì˜ í•©ì„ êµ¬í•˜ì.
 SELECT DeptID, SUM(Salary) AS 'Tot_Salary'
 	FROM dbo.Employee
 	WHERE RetireDate IS NULL
 	GROUP BY DeptID 
 GO
 
--- ºÎ¼­º° ±Ù¹«ÇÏ´Â Á÷¿øÀÇ ÃÖ´ë°ª, ÃÖ¼Ò°ª, ÃÖ´ë°ª - ÃÖ¼Ò°ªÀ» ±¸ÇÏÀÚ
+-- ë¶€ì„œë³„ ê·¼ë¬´í•˜ëŠ” ì§ì›ì˜ ìµœëŒ€ê°’, ìµœì†Œê°’, ìµœëŒ€ê°’ - ìµœì†Œê°’ì„ êµ¬í•˜ì
 SELECT DeptID, MAX(Salary) AS 'Max_Salary', MIN(Salary) AS ' Min_Salary',
 			 MAX(Salary) - MIN(Salary) AS ' Diff_Salary'
 	FROM dbo.Employee
@@ -109,7 +109,7 @@ SELECT DeptID, MAX(Salary) AS 'Max_Salary', MIN(Salary) AS ' Min_Salary',
 	GROUP BY DeptID
 GO
 
---  ºÎ¼­º° ±Ù¹«ÇÏ´Â Á÷¿øÁß ±Ş¿©°¡ 5000 ÀÌ»óÀÎ Á÷¿øÀÇ ¼ö¸¦±¸ÇÏÀÚ
+--  ë¶€ì„œë³„ ê·¼ë¬´í•˜ëŠ” ì§ì›ì¤‘ ê¸‰ì—¬ê°€ 5000 ì´ìƒì¸ ì§ì›ì˜ ìˆ˜ë¥¼êµ¬í•˜ì
 SELECT DeptID, COUNT(EmpID) AS 'Max_Salary'
 	FROM dbo.Employee
 	WHERE Salary > 5000
@@ -117,7 +117,7 @@ SELECT DeptID, COUNT(EmpID) AS 'Max_Salary'
 GO
 
 
--- 4) ±×·ìÇÎ °á°ú¿¡ ´ëÇÑ ÇÊÅÍ¸µ: HAVING
+-- 4) ê·¸ë£¹í•‘ ê²°ê³¼ì— ëŒ€í•œ í•„í„°ë§: HAVING
 
 SELECT DeptID, COUNT(*) AS 'Emp_Count'
 	FROM dbo.Employee
@@ -125,14 +125,14 @@ SELECT DeptID, COUNT(*) AS 'Emp_Count'
 	HAVING COUNT(*) >= 3
 GO
 
--- ºÎ¼­º°·Î ÇöÀç ±Ù¹« ÁßÀÎ Á÷¿øÀÇ Æò±Õ ±Ş¿©¸¦ ¾ò´Â Äõ¸®¸¦ ÀÛ¼ºÇÏÀÚ.
+-- ë¶€ì„œë³„ë¡œ í˜„ì¬ ê·¼ë¬´ ì¤‘ì¸ ì§ì›ì˜ í‰ê·  ê¸‰ì—¬ë¥¼ ì–»ëŠ” ì¿¼ë¦¬ë¥¼ ì‘ì„±í•˜ì.
 SELECT DeptID, AVG(Salary) AS 'Avg_Salary'
 	FROM dbo.Employee
 	WHERE RetireDate IS NULL
 	GROUP BY DeptID
 GO
 
--- À§¿¡¼­ ¾òÀº ºÎ¼­ Æò±Õ ±Ş¿©°¡ Àü»ç Æò±Õ ±Ş¿©º¸´Ù ¸¹Àº ºÎ¼­ÀÇ Æò±Õ ±Ş¿©´Â?
+-- ìœ„ì—ì„œ ì–»ì€ ë¶€ì„œ í‰ê·  ê¸‰ì—¬ê°€ ì „ì‚¬ í‰ê·  ê¸‰ì—¬ë³´ë‹¤ ë§ì€ ë¶€ì„œì˜ í‰ê·  ê¸‰ì—¬ëŠ”?
 SELECT DeptID, AVG(Salary) AS 'Avg_Salary'
 	FROM dbo.Employee
 	WHERE RetireDate IS NULL
@@ -141,7 +141,7 @@ SELECT DeptID, AVG(Salary) AS 'Avg_Salary'
 GO
 
 
--- 5) »õ·Î¿î ±×·ì º° Áı°è ¹æ¹ı: GROUPING SETS
+-- 5) ìƒˆë¡œìš´ ê·¸ë£¹ ë³„ ì§‘ê³„ ë°©ë²•: GROUPING SETS
 
 SELECT DeptID, SUM(Salary) AS 'Tot_Salary'
 	FROM dbo.Employee
@@ -155,7 +155,7 @@ SELECT Gender, SUM(Salary) AS 'Tot_Salary'
 	GROUP BY Gender
 GO
 
--- °á°ú °áÇÕ
+-- ê²°ê³¼ ê²°í•©
 SELECT DeptID, NULL AS 'Gender', SUM(Salary) AS 'Tot_Salary'
 	FROM dbo.Employee
 	WHERE RetireDate IS NULL
@@ -170,7 +170,7 @@ SELECT NULL, Gender, SUM(Salary) AS 'Tot_Salary'
 	ORDER BY Gender, DeptID
 GO
 
--- GROUPING SETS »ç¿ë
+-- GROUPING SETS ì‚¬ìš©
 SELECT DeptID, Gender, SUM(Salary) AS 'Tot_Salary'
 	FROM dbo.Employee
 	WHERE RetireDate IS NULL
@@ -178,21 +178,21 @@ SELECT DeptID, Gender, SUM(Salary) AS 'Tot_Salary'
 	ORDER BY Gender, DeptID
 GO
 
--- ÀüÃ¼ Áı°è¸¸ º¸¿©ÁÖ±â
+-- ì „ì²´ ì§‘ê³„ë§Œ ë³´ì—¬ì£¼ê¸°
 SELECT DeptID, Gender, SUM(Salary) AS 'Tot_Salary'
 	FROM dbo.Employee
 	WHERE DeptID IN ('SYS', 'MKT') AND RetireDate IS NULL
 	GROUP BY GROUPING SETS((DeptID, Gender), ())
 GO
 
--- ºÎ¼­ ¼Ò°è + ÀüÃ¼ Áı°è º¸¿©ÁÖ±â
+-- ë¶€ì„œ ì†Œê³„ + ì „ì²´ ì§‘ê³„ ë³´ì—¬ì£¼ê¸°
 SELECT DeptID, Gender, SUM(Salary) AS 'Tot_Salary'
 	FROM dbo.Employee
 	WHERE DeptID IN ('SYS', 'MKT') AND RetireDate IS NULL
 	GROUP BY GROUPING SETS((DeptID, Gender), (DeptID), ())
 GO
 
--- ºÎ¼­ ¼Ò°è¸¸ º¸¿©ÁÖ±â(ÀüÃ¼ Áı°è »ı·«)
+-- ë¶€ì„œ ì†Œê³„ë§Œ ë³´ì—¬ì£¼ê¸°(ì „ì²´ ì§‘ê³„ ìƒëµ)
 SELECT DeptID, Gender, SUM(Salary) AS 'Tot_Salary'
 	FROM dbo.Employee
 	WHERE DeptID IN ('SYS', 'MKT') AND RetireDate IS NULL
@@ -202,19 +202,19 @@ GO
 
 
 --*
---* B. ¼øÀ§ ±¸ÇÏ±â
+--* B. ìˆœìœ„ êµ¬í•˜ê¸°
 --*
 
 
--- 1) ¼øÀ§ Ç¥½Ã: RANK
+-- 1) ìˆœìœ„ í‘œì‹œ: RANK
 
--- ÀüÃ¼ ¼øÀ§
+-- ì „ì²´ ìˆœìœ„
 SELECT EmpID, EmpName, Gender, Salary, RANK() OVER(ORDER BY Salary DESC) AS 'Rnk'
    FROM dbo.Employee
    WHERE DeptID IN ('SYS', 'MKT') AND RetireDate IS NULL
 GO
 
--- ¿µ¿ªº° ¼øÀ§
+-- ì˜ì—­ë³„ ìˆœìœ„
 SELECT EmpID, EmpName, Gender, Salary, 
 	RANK() OVER(PARTITION BY Gender ORDER BY Salary DESC) AS 'Rnk'
    FROM dbo.Employee
@@ -222,15 +222,15 @@ SELECT EmpID, EmpName, Gender, Salary,
 GO
 
 
--- 2) ¼øÀ§ Ç¥½Ã: DENSE_RANK
+-- 2) ìˆœìœ„ í‘œì‹œ: DENSE_RANK
 
--- ÀüÃ¼ ¼øÀ§
+-- ì „ì²´ ìˆœìœ„
 SELECT EmpID, EmpName, Gender, Salary,  DENSE_RANK() OVER(ORDER BY Salary DESC) AS 'Rnk'
    FROM dbo.Employee
    WHERE DeptID IN ('SYS', 'MKT') AND RetireDate IS NULL
 GO
 
--- ¿µ¿ªº° ¼øÀ§
+-- ì˜ì—­ë³„ ìˆœìœ„
 SELECT EmpID, EmpName, Gender, Salary, 
 	DENSE_RANK() OVER(PARTITION BY Gender ORDER BY Salary DESC) AS 'Rnk'
    FROM dbo.Employee
@@ -238,16 +238,16 @@ SELECT EmpID, EmpName, Gender, Salary,
 GO
 
 
--- 3) ¹øÈ£ Ç¥½Ã: ROW_NUMBER
+-- 3) ë²ˆí˜¸ í‘œì‹œ: ROW_NUMBER
 
--- ÀüÃ¼ ¹øÈ£
+-- ì „ì²´ ë²ˆí˜¸
 SELECT ROW_NUMBER() OVER(ORDER BY EmpName DESC) AS 'Num',
 			 EmpName, EmpID, Gender, Salary
 	FROM dbo.Employee
 	WHERE DeptID IN ('SYS', 'MKT') AND RetireDate IS NULL
 GO
 
--- ¿µ¿ªº° ¹øÈ£
+-- ì˜ì—­ë³„ ë²ˆí˜¸
 SELECT ROW_NUMBER() OVER(PARTITION BY DeptID
 			 ORDER BY EmpName DESC) AS 'Num',
 			 DeptID, EmpName, Empid, Gender, Salary
@@ -256,15 +256,15 @@ SELECT ROW_NUMBER() OVER(PARTITION BY DeptID
 GO
 
 
--- 4) ¹üÀ§ Ç¥½Ã: NTILE
+-- 4) ë²”ìœ„ í‘œì‹œ: NTILE
 
--- ÀüÃ¼ ¹üÀ§
+-- ì „ì²´ ë²”ìœ„
 SELECT EmpID, EmpName, Gender, Salary, NTILE(3) OVER(ORDER BY Salary DESC) AS 'Band'
 	FROM dbo.Employee
 	WHERE DeptID IN ('SYS', 'MKT') AND RetireDate IS NULL
 GO
 
--- ¿µ¿ªº° ¹üÀ§
+-- ì˜ì—­ë³„ ë²”ìœ„
 SELECT EmpID, EmpName, Gender, Salary, 
 			 NTILE(3) OVER(PARTITION BY Gender ORDER BY Salary DESC) AS 'Band'
 	FROM dbo.Employee
@@ -274,26 +274,26 @@ GO
 
 
 --*
---* C. PIVOT°ú UNPIVOT
+--* C. PIVOTê³¼ UNPIVOT
 --*
 
 
 -- 1) PIVOT
 
--- ºÎ¼­ ÄÚµå¸¦ Æ÷ÇÔÇÑ Á÷¿øµéÀÇ ÈŞ°¡ ÇöÈ²
+-- ë¶€ì„œ ì½”ë“œë¥¼ í¬í•¨í•œ ì§ì›ë“¤ì˜ íœ´ê°€ í˜„í™©
 SELECT v.EmpID, e.DeptID, Year(v.BeginDate) AS 'Year', v.Duration
 	FROM dbo.Vacation AS v
 	INNER JOIN  dbo.Employee AS e ON v.EmpID = e.EmpID
 GO
 
--- ºÎ¼­º° +¿¬µµº° ÈŞ°¡ ÇöÈ² Áı°è
+-- ë¶€ì„œë³„ +ì—°ë„ë³„ íœ´ê°€ í˜„í™© ì§‘ê³„
 SELECT e.DeptID, Year(v.BeginDate) AS 'Year', SUM(v.Duration) AS 'Duration'
 	FROM dbo.Vacation AS v
 	INNER JOIN  dbo.Employee AS e ON v.EmpID = e.EmpID
 	GROUP BY e.DeptID, Year(BeginDate) 
 GO
 
--- ÇÇ¹ş ÇüÅÂ·Î Ç¥½ÃÇÏ±â
+-- í”¼ë²— í˜•íƒœë¡œ í‘œì‹œí•˜ê¸°
 SELECT DeptID, [2007], [2008], [2009], [2010], [2011]
 	FROM (
 		SELECT e.DeptID, Year(v.BeginDate) AS 'Year', SUM(v.Duration) AS 'Duration'
@@ -305,7 +305,7 @@ SELECT DeptID, [2007], [2008], [2009], [2010], [2011]
 	FOR Year IN([2007], [2008], [2009], [2010], [2011])) AS Pvt
 GO
 
--- ÇÇ¹ş ÇüÅÂ·Î Ç¥½ÃÇÏ±â(NULL °ª Ã³¸®)
+-- í”¼ë²— í˜•íƒœë¡œ í‘œì‹œí•˜ê¸°(NULL ê°’ ì²˜ë¦¬)
 SELECT DeptID, ISNULL([2007], 0) AS '2007', ISNULL([2008], 0) AS '2008', ISNULL([2009], 0) AS '2009', ISNULL([2010], 0) AS '2010', ISNULL([2011], 0) AS '2011'
 	FROM (
 		SELECT e.DeptID, Year(v.BeginDate) AS 'Year', SUM(v.Duration) AS 'Duration'
@@ -320,7 +320,7 @@ GO
 
 -- 2) UNPIVOT
 
- -- ÇÇ¹ş ÇüÅÂ Å×ÀÌºí ¸¸µé±â
+ -- í”¼ë²— í˜•íƒœ í…Œì´ë¸” ë§Œë“¤ê¸°
  SELECT DeptID, [2007], [2008], [2009], [2010], [2011]
 	INTO dbo.YearVacation
 	FROM (

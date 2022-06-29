@@ -1,7 +1,7 @@
 use tempdb
 go
 
--- Å×ÀÌºí ¸¸µé±â
+-- í…Œì´ë¸” ë§Œë“¤ê¸°
 IF OBJECT_ID('dbo.Employee02', 'U') IS NOT NULL
 	DROP TABLE dbo.Employee02
 GO
@@ -14,16 +14,16 @@ CREATE TABLE dbo.Employee02 (
 )
 GO
 
-INSERT INTO dbo.Employee02 VALUES('S0001', N'È«±æµ¿', NULL, 'hong@test.com')
-INSERT INTO dbo.Employee02 VALUES('S0002', N'ÀÏÁö¸Å', 'S0001', 'jiemae@test.com')
-INSERT INTO dbo.Employee02 VALUES('S0003', N'°­¿ìµ¿', 'S0001', 'kang@test.com')
-INSERT INTO dbo.Employee02 VALUES('S0004', N'¾È°æÅÂ', 'S0002', 'glass@test.com')
-INSERT INTO dbo.Employee02 VALUES('S0005', N'±èÄ¡±¹', 'S0003', 'kimchi@test.com')
-INSERT INTO dbo.Employee02 VALUES('S0006', N'¿À°¨ÀÚ', 'S0002', 'ohoh@test.com')
-INSERT INTO dbo.Employee02 VALUES('S0007', N'Çã¹«ÇØ', 'S0005', 'mumu@test.com')
+INSERT INTO dbo.Employee02 VALUES('S0001', N'í™ê¸¸ë™', NULL, 'hong@test.com')
+INSERT INTO dbo.Employee02 VALUES('S0002', N'ì¼ì§€ë§¤', 'S0001', 'jiemae@test.com')
+INSERT INTO dbo.Employee02 VALUES('S0003', N'ê°•ìš°ë™', 'S0001', 'kang@test.com')
+INSERT INTO dbo.Employee02 VALUES('S0004', N'ì•ˆê²½íƒœ', 'S0002', 'glass@test.com')
+INSERT INTO dbo.Employee02 VALUES('S0005', N'ê¹€ì¹˜êµ­', 'S0003', 'kimchi@test.com')
+INSERT INTO dbo.Employee02 VALUES('S0006', N'ì˜¤ê°ì', 'S0002', 'ohoh@test.com')
+INSERT INTO dbo.Employee02 VALUES('S0007', N'í—ˆë¬´í•´', 'S0005', 'mumu@test.com')
 GO
 
--- 1 ±×³É ±×´ë·Î
+-- 1 ê·¸ëƒ¥ ê·¸ëŒ€ë¡œ
 WITH Employees_CTE 
 	AS (
 		SELECT EmpID, ManagerID, EmpName
@@ -38,10 +38,10 @@ WITH Employees_CTE
 	SELECT * FROM Employees_CTE
 GO
 
---2 ¸Å´ÏÀú ÀÌ¸§ ±¸ÇÏ±â
+--2 ë§¤ë‹ˆì € ì´ë¦„ êµ¬í•˜ê¸°
 WITH Employees_CTE 
 	AS (
-		SELECT EmpID, EmpName, ManagerID, empName as ¸Å´ÏÀú
+		SELECT EmpID, EmpName, ManagerID, empName as ë§¤ë‹ˆì €
 			FROM dbo.Employee02
 			WHERE ManagerID IS NULL
 		UNION ALL
@@ -50,90 +50,90 @@ WITH Employees_CTE
 			JOIN dbo.Employee02 AS e
 			ON m.EmpID = e.ManagerID
 	)
-	SELECT * FROM Employees_CTE  order by ¸Å´ÏÀú, empID
+	SELECT * FROM Employees_CTE  order by ë§¤ë‹ˆì €, empID
 GO
 
---3.¼­¿­ Ç¥½Ã
+--3.ì„œì—´ í‘œì‹œ
 
---3.1 ·¹º§ Ç¥½Ã¸¦ ¿¬½À
+--3.1 ë ˆë²¨ í‘œì‹œë¥¼ ì—°ìŠµ
 WITH Employees_CTE 
 	AS (
-		SELECT EmpID, EmpName, ManagerID, empName as ¸Å´ÏÀú, 0 as ·¹º§
+		SELECT EmpID, EmpName, ManagerID, empName as ë§¤ë‹ˆì €, 0 as ë ˆë²¨
 			FROM dbo.Employee02
 			WHERE ManagerID IS NULL
 		UNION ALL
-		SELECT e.EmpID, e.EmpName, e.ManagerID, m.EmpName, 1 as ·¹º§
+		SELECT e.EmpID, e.EmpName, e.ManagerID, m.EmpName, 1 as ë ˆë²¨
 			FROM Employees_CTE AS m
 			JOIN dbo.Employee02 AS e
 			ON m.EmpID = e.ManagerID
 	)
 	SELECT * FROM Employees_CTE
-	order by ·¹º§, empid
+	order by ë ˆë²¨, empid
 GO
 
 
---3.2 »ó»çÀÇ ·¹º§ + 1·Î Ç¥½Ã¸¦ ÇØ º¸¸é
+--3.2 ìƒì‚¬ì˜ ë ˆë²¨ + 1ë¡œ í‘œì‹œë¥¼ í•´ ë³´ë©´
 WITH Employees_CTE 
 	AS (
-		SELECT EmpID, EmpName, ManagerID, empName as ¸Å´ÏÀú, 0 as ·¹º§
+		SELECT EmpID, EmpName, ManagerID, empName as ë§¤ë‹ˆì €, 0 as ë ˆë²¨
 			FROM dbo.Employee02
 			WHERE ManagerID IS NULL
 		UNION ALL
-		SELECT e.EmpID, e.EmpName, e.ManagerID, m.EmpName, m.·¹º§ + 1	--·¹º§ Áõ°¡
+		SELECT e.EmpID, e.EmpName, e.ManagerID, m.EmpName, m.ë ˆë²¨ + 1	--ë ˆë²¨ ì¦ê°€
 			FROM Employees_CTE AS m
 			JOIN dbo.Employee02 AS e
 			ON m.EmpID = e.ManagerID
 	)
 	SELECT * FROM Employees_CTE
-	order by ·¹º§, empid
+	order by ë ˆë²¨, empid
 GO
 
 
---3.3 sortKey Ãß°¡
---°³³ä
+--3.3 sortKey ì¶”ê°€
+--ê°œë…
 select CAST(1 AS VARBINARY(900)) AS SortKey
 select CAST(2 AS VARBINARY(900)) AS SortKey
 select CAST(1 AS VARBINARY(900)) + CAST( 2 AS VARBINARY(900) )
 
 
-WITH Employees_CTE ( EmpID, EmpName, ManagerID, ¸Å´ÏÀú, ·¹º§, sortKey )	--ÀÌÁ¨ ÄÃ·³¸í ¹İµå½Ã ÇÊ¿äÇÏ´Ù. ¾øÀ¸¸é ¿À·ù.
+WITH Employees_CTE ( EmpID, EmpName, ManagerID, ë§¤ë‹ˆì €, ë ˆë²¨, sortKey )	--ì´ì   ì»¬ëŸ¼ëª… ë°˜ë“œì‹œ í•„ìš”í•˜ë‹¤. ì—†ìœ¼ë©´ ì˜¤ë¥˜.
 	AS (
 		SELECT EmpID, EmpName, ManagerID, empName, 0 , CAST(EmpID AS VARBINARY(900)) 
 			FROM dbo.Employee02
 			WHERE ManagerID IS NULL
 		UNION ALL
-		SELECT e.EmpID, e.EmpName, e.ManagerID, m.EmpName, m.·¹º§ + 1
+		SELECT e.EmpID, e.EmpName, e.ManagerID, m.EmpName, m.ë ˆë²¨ + 1
 			, CAST(m.EmpID AS VARBINARY(900)) + CAST(e.EmpID AS VARBINARY(900) )
 			FROM Employees_CTE AS m
 			JOIN dbo.Employee02 AS e
 			ON m.EmpID = e.ManagerID
 	)
 	SELECT * FROM Employees_CTE
-	order by ·¹º§, empid
+	order by ë ˆë²¨, empid
 GO
---¸Ş½ÃÁö 240, ¼öÁØ 16, »óÅÂ 1, ÁÙ 1
---Àç±Í Äõ¸® "Employees_CTE"ÀÇ ¿­ "sortKey"¿¡ ÀÖ´Â ¾ŞÄ¿ ºÎºĞ°ú Àç±Í ºÎºĞ °£ÀÇ À¯ÇüÀÌ ÀÏÄ¡ÇÏÁö ¾Ê½À´Ï´Ù.
+--ë©”ì‹œì§€ 240, ìˆ˜ì¤€ 16, ìƒíƒœ 1, ì¤„ 1
+--ì¬ê·€ ì¿¼ë¦¬ "Employees_CTE"ì˜ ì—´ "sortKey"ì— ìˆëŠ” ì•µì»¤ ë¶€ë¶„ê³¼ ì¬ê·€ ë¶€ë¶„ ê°„ì˜ ìœ í˜•ì´ ì¼ì¹˜í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.
 
---Á¤»ó
-WITH Employees_CTE ( EmpID, EmpName, ManagerID, ¸Å´ÏÀú, ·¹º§, sortKey )	--ÀÌÁ¨ ÄÃ·³¸í ¹İµå½Ã ÇÊ¿äÇÏ´Ù. ¾øÀ¸¸é ¿À·ù.
+--ì •ìƒ
+WITH Employees_CTE ( EmpID, EmpName, ManagerID, ë§¤ë‹ˆì €, ë ˆë²¨, sortKey )	--ì´ì   ì»¬ëŸ¼ëª… ë°˜ë“œì‹œ í•„ìš”í•˜ë‹¤. ì—†ìœ¼ë©´ ì˜¤ë¥˜.
 	AS (
-		SELECT EmpID, EmpName, ManagerID, empName, 0 as ·¹º§, CAST(EmpID AS VARBINARY(900)) 
+		SELECT EmpID, EmpName, ManagerID, empName, 0 as ë ˆë²¨, CAST(EmpID AS VARBINARY(900)) 
 			FROM dbo.Employee02
 			WHERE ManagerID IS NULL
 		UNION ALL
-		SELECT e.EmpID, e.EmpName, e.ManagerID, m.EmpName, m.·¹º§ + 1
-			, CAST( sortKey + CAST(e.EmpID AS VARBINARY(900) ) AS VARBINARY(900) )	--¾ö°İÇÑ ÀÚ·áÇü ÀÏÄ¡°¡ ¿ä±¸µÈ´Ù. ÀÚµ¿ Çüº¯È¯ ¾È µÈ´Ù.
+		SELECT e.EmpID, e.EmpName, e.ManagerID, m.EmpName, m.ë ˆë²¨ + 1
+			, CAST( sortKey + CAST(e.EmpID AS VARBINARY(900) ) AS VARBINARY(900) )	--ì—„ê²©í•œ ìë£Œí˜• ì¼ì¹˜ê°€ ìš”êµ¬ëœë‹¤. ìë™ í˜•ë³€í™˜ ì•ˆ ëœë‹¤.
 			FROM Employees_CTE AS m
 			JOIN dbo.Employee02 AS e
 			ON m.EmpID = e.ManagerID
 	)
 	SELECT * FROM Employees_CTE
-	order by ·¹º§, empid
+	order by ë ˆë²¨, empid
 GO
 
 
-select replicate ('¹İº¹  | ' , 3)
---°úÁ¦07 ´ÙÀ½ °á°ú¸¦ Ãâ·ÂÇÏ´Â ÇÁ·Î½ÃÀú¸¦ ¸¸µéÀÚ
+select replicate ('ë°˜ë³µ  | ' , 3)
+--ê³¼ì œ07 ë‹¤ìŒ ê²°ê³¼ë¥¼ ì¶œë ¥í•˜ëŠ” í”„ë¡œì‹œì €ë¥¼ ë§Œë“¤ì
 
 
 
@@ -167,29 +167,29 @@ go
 WITH CarPartsCTE(SubPart , Qty)
 AS
 (
-	-- ¾ŞÄ¿ ¸â¹ö(Anchor Member):
-	-- CarPartsCTE ÀÚ½ÅÀ» ÂüÁ¶ÇÏÁö ¾Ê´Â SELECT Äõ¸®
+	-- ì•µì»¤ ë©¤ë²„(Anchor Member):
+	-- CarPartsCTE ìì‹ ì„ ì°¸ì¡°í•˜ì§€ ì•ŠëŠ” SELECT ì¿¼ë¦¬
 	SELECT SubPart , Qty
 	FROM CarParts
 	WHERE Part = 'Body'
 
 	UNION ALL
 
-	-- Àç±Í ¸â¹ö (Recursive Member):
-	-- CTE(CarPartsCTE) ÀÚ±â ÀÚ½ÅÀ» ÂüÁ¶ÇÏ´Â SELECT Äõ¸®
+	-- ì¬ê·€ ë©¤ë²„ (Recursive Member):
+	-- CTE(CarPartsCTE) ìê¸° ìì‹ ì„ ì°¸ì¡°í•˜ëŠ” SELECT ì¿¼ë¦¬
 	SELECT CarParts.SubPart , CarPartsCTE.Qty * CarParts.Qty
 	FROM CarPartsCTE INNER JOIN CarParts
 		ON CarPartsCTE.SubPart = CarParts.Part
 	WHERE CarParts.CarID = 1
 )
 
--- Ãâ·Â Äõ¸®
+-- ì¶œë ¥ ì¿¼ë¦¬
 --SELECT * FROM CarPartsCTE order by subPart
 SELECT SubPart , SUM(Qty) as q
 FROM CarPartsCTE
 GROUP BY SubPart;
 
---°úÁ¦08 ´ÙÀ½ °á°ú¸¦ Ãâ·ÂÇÏ´Â ÇÁ·Î½ÃÀú¸¦ ¸¸µéÀÚ
+--ê³¼ì œ08 ë‹¤ìŒ ê²°ê³¼ë¥¼ ì¶œë ¥í•˜ëŠ” í”„ë¡œì‹œì €ë¥¼ ë§Œë“¤ì
 
 
 

@@ -11,13 +11,13 @@ select top 30 provider_no from charge order by NEWID()
 --select * from #a
 
 
---id = 6, 12, 18 ... ÀÏ¶§´Â case°ª¿¡ ¹«¾ùÀÌ ³ª¿Ã±î?
+--id = 6, 12, 18 ... ì¼ë•ŒëŠ” caseê°’ì— ë¬´ì—‡ì´ ë‚˜ì˜¬ê¹Œ?
 select *
 	, case 
 		when id %3 = 0 then 3
 		when id %2 = 0 then 2
 		else id
-	end as case°ª
+	end as caseê°’
 from #a
 
 select *
@@ -25,5 +25,5 @@ select *
 		when id %2 = 0 then 2
 		when id %3 = 0 then 3
 		else id
-	end as case°ª
+	end as caseê°’
 from #a

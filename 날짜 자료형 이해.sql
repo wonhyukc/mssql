@@ -1,6 +1,6 @@
 create table #a (
-	»ç¹ø	int		identity,
-	ÀÔ»çÀÏÀÚ	date
+	ì‚¬ë²ˆ	int		identity,
+	ì…ì‚¬ì¼ì	date
 )
 go
 select getdate()
@@ -26,8 +26,8 @@ go
 
 
 create table #a (
-	»ç¹ø	int		identity,
-	ÀÔ»çÀÏÀÚ	datetime
+	ì‚¬ë²ˆ	int		identity,
+	ì…ì‚¬ì¼ì	datetime
 )
 go
 select getdate()

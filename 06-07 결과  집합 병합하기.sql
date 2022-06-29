@@ -1,5 +1,5 @@
 --*
---* 6.7 °á°ú ÁýÇÕ º´ÇÕÇÏ±â
+--* 6.7 ê²°ê³¼ ì§‘í•© ë³‘í•©í•˜ê¸°
 --*
 
 
@@ -8,20 +8,20 @@
 USE HRDB
 GO
 
--- 2008³â ÀÔ»çÇÑ Á÷¿ø
+-- 2008ë…„ ìž…ì‚¬í•œ ì§ì›
 SELECT EmpID, EmpName, DeptID, HireDate, EMail, Salary
 	FROM dbo.Employee
 	WHERE HireDate BETWEEN '2008-01-01' AND '2008-12-31' 
 GO
 
--- ±Þ¿©¸¦ 7,000 ÀÌ»ó ¹Þ´Â Á÷¿ø
+-- ê¸‰ì—¬ë¥¼ 7,000 ì´ìƒ ë°›ëŠ” ì§ì›
 SELECT EmpID, EmpName, DeptID, HireDate, EMail, Salary
 	FROM dbo.Employee
 	WHERE Salary >= 7000
 GO
 
--- 2008³â¿¡ ÀÔ»ç Çß°Å³ª ±Þ¿©¸¦ 7,000 ÀÌ»ó ¹Þ´Â Á÷¿ø
--- UNION(Áßº¹ Çà ÇÑ¹ø¸¸ Ç¥½Ã)
+-- 2008ë…„ì— ìž…ì‚¬ í–ˆê±°ë‚˜ ê¸‰ì—¬ë¥¼ 7,000 ì´ìƒ ë°›ëŠ” ì§ì›
+-- UNION(ì¤‘ë³µ í–‰ í•œë²ˆë§Œ í‘œì‹œ)
 SELECT EmpID, EmpName, DeptID, HireDate, EMail, Salary
 	FROM dbo.Employee
 	WHERE HireDate BETWEEN '2008-01-01' AND '2008-12-31' 
@@ -33,7 +33,7 @@ SELECT EmpID, EmpName, DeptID, HireDate, EMail, Salary
 	WHERE Salary >= 7000
 GO
 
--- UNION(Áßº¹ ¸ðµÎ Ç¥½Ã)
+-- UNION(ì¤‘ë³µ ëª¨ë‘ í‘œì‹œ)
 SELECT EmpID, EmpName, DeptID, HireDate, EMail, Salary
 	FROM dbo.Employee
 	WHERE HireDate BETWEEN '2008-01-01' AND '2008-12-31' 
@@ -48,7 +48,7 @@ GO
 
 -- 2) INTERSECT
 
--- 2008³â¿¡ ÀÔ»çÇßÀ¸¸ç ±Þ¿©¸¦ 7,000 ÀÌ»ó ¹Þ´Â Á÷¿ø
+-- 2008ë…„ì— ìž…ì‚¬í–ˆìœ¼ë©° ê¸‰ì—¬ë¥¼ 7,000 ì´ìƒ ë°›ëŠ” ì§ì›
 SELECT EmpID, EmpName, DeptID, HireDate, EMail, Salary
 	FROM dbo.Employee
 	WHERE HireDate BETWEEN '2008-01-01' AND '2008-12-31' 
@@ -63,7 +63,7 @@ GO
 
 -- 3) EXCEPT
 
--- 2008³â¿¡ ÀÔ»çÇßÁö¸¸ ±Þ¿©À» 7,000 ÀÌ»ó ¹ÞÀ¸¸é Á¦¿Ü
+-- 2008ë…„ì— ìž…ì‚¬í–ˆì§€ë§Œ ê¸‰ì—¬ì„ 7,000 ì´ìƒ ë°›ìœ¼ë©´ ì œì™¸
 SELECT EmpID, EmpName, DeptID, HireDate, EMail, Salary
 	FROM dbo.Employee
 	WHERE HireDate BETWEEN '2008-01-01' AND '2008-12-31' 

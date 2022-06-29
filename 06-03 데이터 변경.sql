@@ -1,5 +1,5 @@
 --*
---* 6.3 µ¥ÀÌÅÍ º¯°æ
+--* 6.3 ë°ì´í„° ë³€ê²½
 --*
 
 
@@ -12,42 +12,42 @@
 USE HRDB
 GO
 
--- 1) ±âº»ÀûÀÎ INSERT ¹®
+-- 1) ê¸°ë³¸ì ì¸ INSERT ë¬¸
 
--- ´ë»ó ¿­ ³ª¿­
+-- ëŒ€ìƒ ì—´ ë‚˜ì—´
 INSERT INTO dbo.Department(DeptID, DeptName, UnitID, StartDate)
-   VALUES('PRD', N'»óÇ°', 'A', GETDATE())
+   VALUES('PRD', N'ìƒí’ˆ', 'A', GETDATE())
 GO
 
 SELECT * FROM dbo.Department
 GO
 
 
--- ´ë»ó ¿­ »ý·«
+-- ëŒ€ìƒ ì—´ ìƒëžµ
 INSERT INTO dbo.Department
-   VALUES('DBA', N'DB°ü¸®', 'A', GETDATE())
+   VALUES('DBA', N'DBê´€ë¦¬', 'A', GETDATE())
 GO
 
 
--- 2) µ¿½Ã¿¡ ¿©·¯ Çà INSERT °¡´É(2008ºÎÅÍ)
+-- 2) ë™ì‹œì— ì—¬ëŸ¬ í–‰ INSERT ê°€ëŠ¥(2008ë¶€í„°)
 
 INSERT INTO dbo.Department
-   VALUES('OPR', N'¿î¿µ', 'A', GETDATE()), ('CST', N'°í°´¼­ºñ½º', NULL, GETDATE())
+   VALUES('OPR', N'ìš´ì˜', 'A', GETDATE()), ('CST', N'ê³ ê°ì„œë¹„ìŠ¤', NULL, GETDATE())
 GO
 
 SELECT * FROM dbo.Department
 GO
 
--- 3) »óÀ§ n °³ INSERT
+-- 3) ìƒìœ„ n ê°œ INSERT
 
--- Å×ÀÌºí ¸¸µé±â
+-- í…Œì´ë¸” ë§Œë“¤ê¸°
 SELECT * 
 	INTO dbo.SampleVacation
 	FROM dbo.Vacation
 	WHERE 1 = 0
 GO
 
--- »óÀ§ 5 °Ç¸¸ INSERT
+-- ìƒìœ„ 5 ê±´ë§Œ INSERT
 INSERT TOP (5) 
    INTO dbo.SampleVacation
    SELECT EmpID, BeginDate, EndDate, Reason, Duration
@@ -59,9 +59,9 @@ SELECT * FROM dbo.SampleVacation
 GO
 
 
--- 4) ÀúÀå ÇÁ·Î½ÃÀú °á°ú INSERT
+-- 4) ì €ìž¥ í”„ë¡œì‹œì € ê²°ê³¼ INSERT
 
--- ÀúÀå ÇÁ·Î½ÃÀú ¸¸µé±â
+-- ì €ìž¥ í”„ë¡œì‹œì € ë§Œë“¤ê¸°
 CREATE PROC dbo.usp_GetVacation
 	@EmpID char(5)
 AS
@@ -70,7 +70,7 @@ AS
 		WHERE EMpID = @EmpID
 GO
 
--- ÀÓ½Ã Å×ÀÌºí ¸¸µé±â
+-- ìž„ì‹œ í…Œì´ë¸” ë§Œë“¤ê¸°
 CREATE TABLE #Vacation (
    EmpID char(5),
    BeginDate datetime,
@@ -79,7 +79,7 @@ CREATE TABLE #Vacation (
 )
 GO
 
--- ÀúÀå ÇÁ·Î½ÃÀú °á°ú INSERT
+-- ì €ìž¥ í”„ë¡œì‹œì € ê²°ê³¼ INSERT
 INSERT INTO #Vacation EXEC dbo.usp_GetVacation 'S0001'
 GO
 
@@ -87,7 +87,7 @@ SELECT * FROM #Vacation
 GO
 
 
--- 5) IDENTITY ¼Ó¼º¿¡ INSERT
+-- 5) IDENTITY ì†ì„±ì— INSERT
 
 DELETE dbo.Vacation
 	WHERE VacationID = 2
@@ -96,16 +96,16 @@ GO
 SELECT * FROM dbo.Vacation
 GO
 
--- ÀÏ¹ÝÀûÀÎ INSERT´Â ¿À·ù ¹ß»ý
+-- ì¼ë°˜ì ì¸ INSERTëŠ” ì˜¤ë¥˜ ë°œìƒ
 INSERT INTO dbo.Vacation(VacationID, EmpID, BeginDate, EndDate, Reason)
-   VALUES(2, 'S0003', '2007-01-02', '2007-01-08', N'½Å³â ¸ÂÀÌ ±âºÐ ³»±â')
+   VALUES(2, 'S0003', '2007-01-02', '2007-01-08', N'ì‹ ë…„ ë§žì´ ê¸°ë¶„ ë‚´ê¸°')
 GO
 
--- ÀÓÀÇÀÇ °ª INSERT ÇÏ±â
+-- ìž„ì˜ì˜ ê°’ INSERT í•˜ê¸°
 SET IDENTITY_INSERT dbo.Vacation ON
 GO
 INSERT INTO dbo.Vacation(VacationID, EmpID, BeginDate, EndDate, Reason)
-   VALUES(2, 'S0003', '2007-01-02', '2007-01-08', N'½Å³â ¸ÂÀÌ ±âºÐ ³»±â')
+   VALUES(2, 'S0003', '2007-01-02', '2007-01-08', N'ì‹ ë…„ ë§žì´ ê¸°ë¶„ ë‚´ê¸°')
 GO
 SET IDENTITY_INSERT dbo.Vacation OFF
 GO
@@ -119,10 +119,10 @@ GO
 --*
 
 
--- 1) ±âº»ÀûÀÎ UPDATE ¹®
+-- 1) ê¸°ë³¸ì ì¸ UPDATE ë¬¸
 
 UPDATE dbo.Employee
-   SET EmpName = N'È«±æÅü'
+   SET EmpName = N'í™ê¸¸í‰'
    WHERE EmpID = 'S0001'
 GO
 
@@ -132,7 +132,7 @@ SELECT *
 GO
 
 
--- 2) FROM ÀýÀ» »ç¿ëÇÑ ´Ù¾çÇÑ Á¶°Ç ÁöÁ¤
+-- 2) FROM ì ˆì„ ì‚¬ìš©í•œ ë‹¤ì–‘í•œ ì¡°ê±´ ì§€ì •
 
 UPDATE dbo.Employee
    SET Salary = Salary * 0.8
@@ -148,7 +148,7 @@ GO
 --*
 
 
--- 1) ±âº»ÀûÀÎ DELETE¹®
+-- 1) ê¸°ë³¸ì ì¸ DELETEë¬¸
 
 DELETE dbo.Vacation
    WHERE VacationID = 10

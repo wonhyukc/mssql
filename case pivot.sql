@@ -1,6 +1,6 @@
 /*
-	case ¿Í pivot ÀÌÇØ
-	Á¤¿øÇõ / 2014.11. ÀçÀÛ¼º
+	case ì™€ pivot ì´í•´
+	ì •ì›í˜ / 2014.11. ìž¬ìž‘ì„±
 */
 
 use pubs
@@ -9,8 +9,8 @@ from sales
 order by 1, 2
 
 /*
-case when  Á¶°Ç then Âü else °ÅÁþ end 
-case Á¶°Ç when Á¶°Ç°ª  then Âü else °ÅÁþ end 
+case when  ì¡°ê±´ then ì°¸ else ê±°ì§“ end 
+case ì¡°ê±´ when ì¡°ê±´ê°’  then ì°¸ else ê±°ì§“ end 
 */
 
 select stor_id, year(ord_date) as yr, qty
@@ -18,7 +18,7 @@ select stor_id, year(ord_date) as yr, qty
 			when qty>=50 then 'A' 
 			when qty>=20 then 'B' 
 			else 'C'
-		end  as µî±Þ
+		end  as ë“±ê¸‰
 from sales
 order by 1, 2
 

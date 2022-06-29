@@ -9,13 +9,13 @@ select * from titles WHERE price >= 10 AND price <= 20
 
 
 
-WHERE name BETWEEN '¼º´ëÁß' AND 'ÀÌÀç¹ü'
+WHERE name BETWEEN 'ì„±ëŒ€ì¤‘' AND 'ì´ìž¬ë²”'
 
 WHERE name IN ('june', 'joy', 'soul')
 WHERE name = 'june' OR name = 'joy' OR name = 'soul'
 
-WHERE name LIKE '%º´±æ'
-WHERE name LIKE '±è%'
-WHERE name >= '±è' AND name < '±é'
+WHERE name LIKE '%ë³‘ê¸¸'
+WHERE name LIKE 'ê¹€%'
+WHERE name >= 'ê¹€' AND name < 'ê¹'
 
 

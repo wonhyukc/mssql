@@ -1,4 +1,4 @@
-WHERE convert(char(112), ³¯Â¥) = ' 20041029'
+WHERE convert(char(112), ë‚ ì§œ) = ' 20041029'
 
 WHERE pubdate = 2001
 WHERE year(pubdate) = 2001

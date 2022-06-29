@@ -1,17 +1,17 @@
 /*
 http://sqlsrv4living.blogspot.kr/2013/12/read-excel-file-excel-2010-2013.html
-¿¢¼¿ 2007, sql 2008 ÀÌÈÄ ºÎÅÍ ÀÌ»ó Çö»ó ¹ß»ý
-ÁÖ·Î 64bit¿¡¼­ ¹ß»ý.
+ì—‘ì…€ 2007, sql 2008 ì´í›„ ë¶€í„° ì´ìƒ í˜„ìƒ ë°œìƒ
+ì£¼ë¡œ 64bitì—ì„œ ë°œìƒ.
 
 
-¿¢¼¿ 2007 ÀÌÇÏ ¹öÀü¿¡¼­ 2010 ¹öÀüÀ» ¿¬°áÇÏ·Á¸é 
-´Ù¿î·Îµå(ACCESS 2010 ¿£Áø)
+ì—‘ì…€ 2007 ì´í•˜ ë²„ì „ì—ì„œ 2010 ë²„ì „ì„ ì—°ê²°í•˜ë ¤ë©´ 
+ë‹¤ìš´ë¡œë“œ(ACCESS 2010 ì—”ì§„)
 http://www.microsoft.com/ko-kr/download/details.aspx?id=13255
 
 
 
-SSMS ¸¦ °ü¸®ÀÚ ±ÇÇÑÀ¸·Î ½ÇÇàÇØ¾ß ÇØ°áµÇ±âµµ ÇÑ´Ù.
-°¡²û ¿¢¼¿ ÆÄÀÏÀÌ ¾Æ¿¹ ±ú¾îÁö´Â °æ¿ìµµ ¹ß»ýÇÑ´Ù. ±×·¸´Ù¸é, ¿¢¼¿ ÆÄÀÏÀ» »õ·Î ¸¸µé¾î¾ß ÇÑ´Ù.
+SSMS ë¥¼ ê´€ë¦¬ìž ê¶Œí•œìœ¼ë¡œ ì‹¤í–‰í•´ì•¼ í•´ê²°ë˜ê¸°ë„ í•œë‹¤.
+ê°€ë” ì—‘ì…€ íŒŒì¼ì´ ì•„ì˜ˆ ê¹¨ì–´ì§€ëŠ” ê²½ìš°ë„ ë°œìƒí•œë‹¤. ê·¸ë ‡ë‹¤ë©´, ì—‘ì…€ íŒŒì¼ì„ ìƒˆë¡œ ë§Œë“¤ì–´ì•¼ í•œë‹¤.
 */
 sp_configure 'show advanced options', 1
 go
@@ -26,7 +26,7 @@ go
 
 
 /*
-¾Æ·¡¿Í °°Àº ¿À·ù°¡ »ý±â¸é ÇÁ·Î¹ÙÀÌ´õ¸¦ Àç µî·Ï ÇØ¾ß ÇÑ´Ù.
+ì•„ëž˜ì™€ ê°™ì€ ì˜¤ë¥˜ê°€ ìƒê¸°ë©´ í”„ë¡œë°”ì´ë”ë¥¼ ìž¬ ë“±ë¡ í•´ì•¼ í•œë‹¤.
 Msg 7399, Level 16, State 1, Line 1
 
 The OLE DB provider "Microsoft.ACE.OLEDB.12.0" for linked server "(null)" reported an error. The provider did not give any information about the error. 
@@ -36,7 +36,7 @@ GO
 EXEC sp_MSset_oledb_prop N'Microsoft.ACE.OLEDB.12.0', N'DynamicParameters', 1
 GO
 
---Excel 2007 ÀÌÈÄ
+--Excel 2007 ì´í›„
 SELECT * 
 --INTO #myTalbe
 FROM OPENROWSET('Microsoft.ACE.OLEDB.12.0',
@@ -44,21 +44,21 @@ FROM OPENROWSET('Microsoft.ACE.OLEDB.12.0',
     'SELECT * FROM [sheet1$]');
 go
 
---csv ÀÐ±â, SQL 2008 64bit¿¡¼­
+--csv ì½ê¸°, SQL 2008 64bitì—ì„œ
 select * 
 from OPENROWSET('Microsoft.ACE.OLEDB.12.0', 'Text;Database=d:\tmp;', 'SELECT * FROM excel_csv.csv')
 go
 
 
 
---ÀÌÈÄ Äõ¸®´Â ¿¢¼¿ ¼­¹ö¸¦ ¿¬°áµÈ¼­¹ö·Î µî·ÏÇÑ ÈÄ¿¡ °¡´É ("excel µî·Ï.sql")
+--ì´í›„ ì¿¼ë¦¬ëŠ” ì—‘ì…€ ì„œë²„ë¥¼ ì—°ê²°ëœì„œë²„ë¡œ ë“±ë¡í•œ í›„ì— ê°€ëŠ¥ ("excel ë“±ë¡.sql")
 
---ÇöÀç°ª È®ÀÎ
+--í˜„ìž¬ê°’ í™•ì¸
 select * from x1...sheet1$
 where DATE <= '01/19/2004 22:07:37.228'
 go
 
---¿¢¼¿À» Äõ¸®·Î ¾÷µ¥ÀÌÆ® ÇÑ´Ù.
+--ì—‘ì…€ì„ ì¿¼ë¦¬ë¡œ ì—…ë°ì´íŠ¸ í•œë‹¤.
 update a
 set sent = sent + 1
 from OPENROWSET('Microsoft.ACE.OLEDB.12.0',
@@ -68,7 +68,7 @@ from OPENROWSET('Microsoft.ACE.OLEDB.12.0',
 where DATE <= '01/19/2004 22:07:37.228'
 go
 
---È®ÀÎ: ÇÊ¿äÇÏ¸é ¿¢¼¿ ÆÄÀÏÀ» Á÷Á¢ ¿­¾î È®ÀÎÇØµµ µÈ´Ù.
+--í™•ì¸: í•„ìš”í•˜ë©´ ì—‘ì…€ íŒŒì¼ì„ ì§ì ‘ ì—´ì–´ í™•ì¸í•´ë„ ëœë‹¤.
 select * from x1...sheet1$
 where DATE <= '01/19/2004 22:07:37.228'
 go

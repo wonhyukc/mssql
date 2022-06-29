@@ -1,6 +1,6 @@
 /*
-	Á¦ 9Àå ¿¬½À3
-	Á¤¿øÇõ / 99.5.1.
+	ì œ 9ìž¥ ì—°ìŠµ3
+	ì •ì›í˜ / 99.5.1.
 */
 
 --1.1
@@ -34,7 +34,7 @@ GO
 SELECT * FROM wages
 
 --1.4
-SELECT emp_id, [¿¬ºÀ] =
+SELECT emp_id, [ì—°ë´‰] =
 	CASE
 	     WHEN hourly_wage IS NOT NULL 
 		THEN 	CONVERT(money,(hourly_wage * 40 * 52))
@@ -47,7 +47,7 @@ FROM wages
 
 --1.5
 SELECT emp_id
-, [¿¬ºÀ] = CAST ( COALESCE( 
+, [ì—°ë´‰] = CAST ( COALESCE( 
 	 hourly_wage * 40 * 52
 	,salary
 	,commission * num_sales ) AS money)
@@ -59,7 +59,7 @@ SELECT emp_id
 , CAST ( COALESCE( 
 	 hourly_wage * 40 * 52
 	,salary
-	,commission * num_sales ) AS money) AS [¿¬ºÀ]
+	,commission * num_sales ) AS money) AS [ì—°ë´‰]
 FROM wages
 
 
@@ -71,7 +71,7 @@ FROM wages
 
 
 
---ÇÔ¼ö  NULLIF, COALESCE
+--í•¨ìˆ˜  NULLIF, COALESCE
 SELECT AVG( ISNULL (price, 0) ) FROM pubs..titles	--1)
 SELECT AVG( price ) FROM pubs..titles			--2)
 
@@ -79,18 +79,18 @@ SELECT SUM(price) / 18 	FROM pubs..titles	--1)
 SELECT SUM(price) / 16 	FROM pubs..titles	--2)
 
 --
-SELECT NULLIF(2,3)	--2¸¦ ¸®ÅÏ
-SELECT NULLIF(3,3)	--³ÎÀ» ¸®ÅÏ
+SELECT NULLIF(2,3)	--2ë¥¼ ë¦¬í„´
+SELECT NULLIF(3,3)	--ë„ì„ ë¦¬í„´
 
 --
-SELECT COALESCE(NULL, 1, 2)	-- 1À» ¸®ÅÏ
-SELECT COALESCE(1, NULL, 2)	-- 1À» ¸®ÅÏ
-SELECT COALESCE(NULL, NULL, 1)	-- 1À» ¸®ÅÏ
+SELECT COALESCE(NULL, 1, 2)	-- 1ì„ ë¦¬í„´
+SELECT COALESCE(1, NULL, 2)	-- 1ì„ ë¦¬í„´
+SELECT COALESCE(NULL, NULL, 1)	-- 1ì„ ë¦¬í„´
 
 --
-SELECT	title_id AS 'Ã¥¹øÈ£'
-,	qty AS '¼ö·®'
-,	'µî±Þ' =  
+SELECT	title_id AS 'ì±…ë²ˆí˜¸'
+,	qty AS 'ìˆ˜ëŸ‰'
+,	'ë“±ê¸‰' =  
 CASE 
             	WHEN qty >= 50 THEN 'A'
             	WHEN qty >= 30 THEN 'B'

@@ -1,11 +1,11 @@
 --*
---* 6.6 ÇÏÀ§ Äõ¸®
+--* 6.6 í•˜ìœ„ ì¿¼ë¦¬
 --*
 
 
--- 1) ÀÏ¹Ý ÇÏÀ§ Äõ¸®
+-- 1) ì¼ë°˜ í•˜ìœ„ ì¿¼ë¦¬
 
--- °¡Àå ¸¹Àº ±Þ¿©¸¦ ¹Þ´Â Á÷¿ø Á¤º¸
+-- ê°€ìž¥ ë§Žì€ ê¸‰ì—¬ë¥¼ ë°›ëŠ” ì§ì› ì •ë³´
 USE HRDB
 GO
 
@@ -14,16 +14,16 @@ SELECT EmpID, EmpName, Salary
    WHERE Salary = (SELECT MAX(Salary) FROM dbo.Employee)
 GO
 
--- ÈÞ°¡¸¦ °£ ÀûÀÌ ÀÖ´Â Á÷¿ø Á¤º¸
+-- íœ´ê°€ë¥¼ ê°„ ì ì´ ìžˆëŠ” ì§ì› ì •ë³´
 SELECT EmpID, EmpName, DeptID, EMail
    FROM dbo.Employee
    WHERE EmpID IN (SELECT EmpID FROM dbo.Vacation)
 GO
 
 
--- 2) »ó°ü ÇÏÀ§ Äõ¸®
+-- 2) ìƒê´€ í•˜ìœ„ ì¿¼ë¦¬
 
--- ºÎ¼­ ÀÌ¸§ °¡Á®¿À±â
+-- ë¶€ì„œ ì´ë¦„ ê°€ì ¸ì˜¤ê¸°
 SELECT EmpID, EmpName, DeptID, (SELECT DeptName FROM dbo.Department
 	  WHERE DeptID = e.DeptID) AS 'DeptName', Salary
    FROM dbo.Employee AS e
@@ -33,7 +33,7 @@ GO
 
 -- 3) EXISTS
 
--- ÈÞ°¡¸¦ °£ ÀûÀÌ ÀÖ´Â Á÷¿ø Á¤º¸
+-- íœ´ê°€ë¥¼ ê°„ ì ì´ ìžˆëŠ” ì§ì› ì •ë³´
 SELECT EmpID, EmpName, EMail
    FROM dbo.Employee e
    WHERE EXISTS(SELECT * 
@@ -41,7 +41,7 @@ SELECT EmpID, EmpName, EMail
                    WHERE EmpID = e.EmpID);
 GO
 
--- ÈÞ°¡¸¦ °£ ÀûÀÌ ¾ø´Â Á÷¿ø Á¤º¸
+-- íœ´ê°€ë¥¼ ê°„ ì ì´ ì—†ëŠ” ì§ì› ì •ë³´
 SELECT EmpID, EmpName, EMail 
    FROM dbo.Employee e
    WHERE NOT EXISTS(SELECT * 

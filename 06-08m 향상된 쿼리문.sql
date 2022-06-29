@@ -1,5 +1,5 @@
 --*
---* 6.8 Çâ»óµÈ Äõ¸®¹®
+--* 6.8 í–¥ìƒëœ ì¿¼ë¦¬ë¬¸
 --*
 
 
@@ -8,21 +8,21 @@
 USE HRDB
 GO
 
--- ±Ş¿©¸¦ ¸¹ÀÌ ¹Ş´Â »óÀ§ 5¸í
+-- ê¸‰ì—¬ë¥¼ ë§ì´ ë°›ëŠ” ìƒìœ„ 5ëª…
 SELECT TOP (5) EmpID, EmpName, DeptID, HireDate, EMail, Salary
 	FROM dbo.Employee
 	WHERE RetireDate IS NULL
 	ORDER BY Salary DESC
 GO
 
--- °°Àº ±Ş¿©¸¦ °®´Â °æ¿ì Æ÷ÇÔ ½ÃÅ´
+-- ê°™ì€ ê¸‰ì—¬ë¥¼ ê°–ëŠ” ê²½ìš° í¬í•¨ ì‹œí‚´
 SELECT TOP (5) WITH TIES EmpID, EmpName, DeptID, HireDate, EMail, Salary
 	FROM dbo.Employee
 	WHERE RetireDate IS NULL
 	ORDER BY Salary DESC
 GO
 
--- ±Ş¿©¸¦ ¸¹ÀÌ ¹Ş´Â »óÀ§ 14.5 ÆÛ¼¾Æ® 
+-- ê¸‰ì—¬ë¥¼ ë§ì´ ë°›ëŠ” ìƒìœ„ 14.5 í¼ì„¼íŠ¸ 
 SELECT TOP (14.5) PERCENT EmpID, EmpName, DeptID, HireDate, EMail, Salary
 	FROM dbo.Employee
 	WHERE RetireDate IS NULL
@@ -32,28 +32,28 @@ GO
 
 -- 2) CASE
 
--- Åğ»çÀÚ Á¤º¸¸¦ M°ú F¸¦ ³², ¿©·Î Ç¥½ÃÇØ¼­
+-- í‡´ì‚¬ì ì •ë³´ë¥¼ Mê³¼ Fë¥¼ ë‚¨, ì—¬ë¡œ í‘œì‹œí•´ì„œ
 SELECT EmpID, EmpName, 
-		 CASE WHEN Gender = 'M' THEN N'³²'
-			     WHEN Gender = 'F' THEN N'¿©'
+		 CASE WHEN Gender = 'M' THEN N'ë‚¨'
+			     WHEN Gender = 'F' THEN N'ì—¬'
 				 ELSE '' END AS 'Gender', DeptID, HireDate, EMail 
 	FROM dbo.Employee
 	WHERE RetireDate IS NOT NULL
 GO
 
--- ¶Ç´Â
+-- ë˜ëŠ”
 SELECT EmpID, EmpName, 
-		 CASE Gender WHEN 'M' THEN N'³²'
-						   WHEN 'F' THEN N'¿©'
+		 CASE Gender WHEN 'M' THEN N'ë‚¨'
+						   WHEN 'F' THEN N'ì—¬'
 						   ELSE '' END AS 'Gender', DeptID, HireDate, EMail 
 	FROM dbo.Employee
 	WHERE RetireDate IS NOT NULL
 GO
 
--- 2007 ÀÔ»çÀÚ¿¡ ´ëÇØ ±Ù¹«, Åğ»ç·Î ÇöÀç »óÅÂ Ç¥½Ã
+-- 2007 ì…ì‚¬ìì— ëŒ€í•´ ê·¼ë¬´, í‡´ì‚¬ë¡œ í˜„ì¬ ìƒíƒœ í‘œì‹œ
 SELECT EmpID, EmpName, 
-		 CASE WHEN RetireDate IS NULL THEN N'±Ù¹«'
-				ELSE N'Åğ»ç' END AS 'Status', DeptID, HireDate, EMail 
+		 CASE WHEN RetireDate IS NULL THEN N'ê·¼ë¬´'
+				ELSE N'í‡´ì‚¬' END AS 'Status', DeptID, HireDate, EMail 
 	FROM dbo.Employee
 	WHERE HireDate BETWEEN '2007-01-01' AND '2007-12-01'
 GO
@@ -61,7 +61,7 @@ GO
 
 -- 3) CTE
 
--- ºÎ¼­ ±Ş¿©ÀÇ ÇÕÀÌ 10,000 ÀÌ»óÀÎ ºÎ¼­ Á¤º¸
+-- ë¶€ì„œ ê¸‰ì—¬ì˜ í•©ì´ 10,000 ì´ìƒì¸ ë¶€ì„œ ì •ë³´
 WITH DeptSalary (DeptID, Tot_Salary)
 	AS (SELECT DeptID, SUM(Salary)
 			FROM dbo.Employee
@@ -71,7 +71,7 @@ SELECT * FROM DeptSalary
 	WHERE Tot_Salary >=10000
 GO
 
--- ºÎ¼­ ÀÌ¸§ Æ÷ÇÔ
+-- ë¶€ì„œ ì´ë¦„ í¬í•¨
 WITH 
 	DeptSalary (DeptID, Tot_Salary)
 	AS (
@@ -86,7 +86,7 @@ SELECT s.DeptID, d.DeptName, d.UnitID, s.Tot_Salary
 	WHERE s.Tot_Salary >=10000
 GO
 
--- CTE ÁßÃ¸: º»ºÎ ÀÌ¸§ Æ÷ÇÔ
+-- CTE ì¤‘ì²©: ë³¸ë¶€ ì´ë¦„ í¬í•¨
 WITH 
 	DeptSalary (DeptID, Tot_Salary)
 	AS 
@@ -113,7 +113,7 @@ GO
 
 -- 6) OVER 
 
--- ¿¬½À¿ë Å×ÀÌºí ¸¸µé±â
+-- ì—°ìŠµìš© í…Œì´ë¸” ë§Œë“¤ê¸°
 SELECT e.EmpID, e.EmpName, e.DeptID, d.UnitID, e.Salary
 	INTO dbo.EmpTest
 	FROM dbo.Employee e
@@ -126,7 +126,7 @@ GO
 SELECT * FROM dbo.EmpTest
 GO
 
--- ÀüÃ¼ Áı°è
+-- ì „ì²´ ì§‘ê³„
 SELECT UnitID, DeptID, EmpID, EmpName, Salary,
 		COUNT(Salary) OVER(PARTITION BY UnitID) AS 'Emp_Count',
 		SUM(Salary) OVER(PARTITION BY UnitID) AS 'Tot_Salary',
@@ -137,7 +137,7 @@ SELECT UnitID, DeptID, EmpID, EmpName, Salary,
 	ORDER BY UnitID, DeptID, EmpID
 GO
 
--- ºÎ¼­º° ´©Àû ÇÕ, ÀÌµ¿ Æò±Õ
+-- ë¶€ì„œë³„ ëˆ„ì  í•©, ì´ë™ í‰ê· 
 SELECT DeptID, EmpID, EmpName, Salary,
 		SUM(Salary) OVER(PARTITION BY DeptID ORDER BY EmpID) AS 'Cumulative_Total',
 		AVG(Salary) OVER(PARTITION BY DeptID ORDER BY EmpID) AS 'Moving_Avg'
@@ -145,7 +145,7 @@ SELECT DeptID, EmpID, EmpName, Salary,
 	ORDER BY DeptID, EmpID
 GO
 
--- ÀüÃ¼ ´©Àû ÇÕ, ÀÌµ¿ Æò±Õ
+-- ì „ì²´ ëˆ„ì  í•©, ì´ë™ í‰ê· 
 SELECT EmpID, EmpName, DeptID, Salary,
 		SUM(Salary) OVER(ORDER BY EmpID) AS 'Cumulative_Total',
 		AVG(Salary) OVER(ORDER BY EmpID) AS 'Moving_Avg'
@@ -153,8 +153,8 @@ SELECT EmpID, EmpName, DeptID, Salary,
 	ORDER BY EmpID
 GO
 
--- ROWS Àı°ú ÇÔ²² »ç¿ë
--- ROW »ç¿ëÇØ¼­ ÇöÀç Çà ´ÙÀ½¿¡ ³ª¿À´Â µÎ°³ ÇàÀ¸·Î Ã¢ Á¦ÇÑ
+-- ROWS ì ˆê³¼ í•¨ê»˜ ì‚¬ìš©
+-- ROW ì‚¬ìš©í•´ì„œ í˜„ì¬ í–‰ ë‹¤ìŒì— ë‚˜ì˜¤ëŠ” ë‘ê°œ í–‰ìœ¼ë¡œ ì°½ ì œí•œ
 SELECT UnitID, DeptID, EmpID, EmpName, Salary,
 		SUM(Salary) OVER(
 				PARTITION BY UnitID 
@@ -168,8 +168,8 @@ SELECT UnitID, DeptID, EmpID, EmpName, Salary,
 	ORDER BY UnitID, DeptID
 GO
 
--- ROWS Àı°ú ÇÔ²² UNBOUNDED PRECEDINGÀ» ÁöÁ¤
--- PARTITION Ã¹¹øÂ° Çà¾Ö¼­ ½ÃÀÛ
+-- ROWS ì ˆê³¼ í•¨ê»˜ UNBOUNDED PRECEDINGì„ ì§€ì •
+-- PARTITION ì²«ë²ˆì§¸ í–‰ì• ì„œ ì‹œì‘
 SELECT UnitID, DeptID, EmpID, EmpName, Salary,
 		SUM(Salary) OVER(
 				PARTITION BY UnitID 
@@ -190,14 +190,14 @@ GO
 USE HRDB
 GO
 
--- Á¶°Ç¿¡ ¸Â´Â ¸ğµç Çà °¡Á®¿À±â
+-- ì¡°ê±´ì— ë§ëŠ” ëª¨ë“  í–‰ ê°€ì ¸ì˜¤ê¸°
 SELECT EmpID, EmpName, DeptID, HireDate, EMail, Salary
 	FROM dbo.Employee
 	WHERE DeptID IN ('SYS', 'MKT') AND RetireDate IS NULL
 	ORDER BY EmpID
 GO
 
--- Ã³À½ 3°³´Â Á¦¿ÜÇÏ°í °¡Á®¿À±â
+-- ì²˜ìŒ 3ê°œëŠ” ì œì™¸í•˜ê³  ê°€ì ¸ì˜¤ê¸°
 SELECT EmpID, EmpName, DeptID, HireDate, EMail, Salary
 	FROM dbo.Employee
 	WHERE DeptID IN ('SYS', 'MKT') AND RetireDate IS NULL
@@ -205,7 +205,7 @@ SELECT EmpID, EmpName, DeptID, HireDate, EMail, Salary
 	OFFSET 3 ROWS
 GO
 
--- Ã³À½ºÎÅÍ 5°³ °¡Á®¿À±â
+-- ì²˜ìŒë¶€í„° 5ê°œ ê°€ì ¸ì˜¤ê¸°
 SELECT EmpID, EmpName, DeptID, HireDate, EMail, Salary
 	FROM dbo.Employee
 	WHERE DeptID IN ('SYS', 'MKT') AND RetireDate IS NULL
@@ -214,7 +214,7 @@ SELECT EmpID, EmpName, DeptID, HireDate, EMail, Salary
     FETCH NEXT 5 ROWS ONLY
 GO
 
--- ½Ä »ç¿ëÇÏ±â 
+-- ì‹ ì‚¬ìš©í•˜ê¸° 
 DECLARE @StartNum tinyint = 2, @EndNum tinyint = 5
 SELECT EmpID, EmpName, DeptID, HireDate, EMail, Salary
 	FROM dbo.Employee

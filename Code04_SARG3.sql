@@ -1,8 +1,8 @@
 FROM table1 WITH (INDEX(0))
 
-WHERE au_lname LIKE ¡®¹Ú¹Ì%'	
-WHERE SUBSTRING (au_lname,1,2)='¹Ú¹Ì'
-WHERE LEFT(au_lname,2)='¹Ú¹Ì'
+WHERE au_lname LIKE â€˜ë°•ë¯¸%'	
+WHERE SUBSTRING (au_lname,1,2)='ë°•ë¯¸'
+WHERE LEFT(au_lname,2)='ë°•ë¯¸'
 
 WHERE titles.title_id = sales.title_id 
 WHERE salary = commission
@@ -10,5 +10,5 @@ WHERE salary <= 500
 
 WHERE salary != 3000
 
-@ÀÌ¸§ = 'ÇöÁß±Õ'
-WHERE ÀÌ¸§ = @ÀÌ¸§
+@ì´ë¦„ = 'í˜„ì¤‘ê· '
+WHERE ì´ë¦„ = @ì´ë¦„

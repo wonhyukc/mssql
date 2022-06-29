@@ -1,9 +1,9 @@
 WHERE title_id = 'bu1032'
-WHERE name = '¿ëÁöÇö¡®
+WHERE name = 'ìš©ì§€í˜„â€˜
 
 WHERE salary < 2000000
-WHERE salary < 2000000 AND dept = '±âÈ¹'
-WHERE salary < 2000000 OR dept = '±âÈ¹'
+WHERE salary < 2000000 AND dept = 'ê¸°íš'
+WHERE salary < 2000000 OR dept = 'ê¸°íš'
 
 WHERE price = 100/12
 WHERE price * 12 = 100
