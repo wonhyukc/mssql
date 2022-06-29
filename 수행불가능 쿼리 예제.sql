@@ -1,39 +1,39 @@
 /*
-	¹Ì¿Ï¼ºÀÎ Äõ¸®¸¦ ¿Ï¼ºÇÏÀÚ. Äõ¸®´Â ¿ÏÀüÇÏ°Ô ¼öÇà °¡´ÉÇØ¾ß ÇÑ´Ù.
+	ë¯¸ì™„ì„±ì¸ ì¿¼ë¦¬ë¥¼ ì™„ì„±í•˜ì. ì¿¼ë¦¬ëŠ” ì™„ì „í•˜ê²Œ ìˆ˜í–‰ ê°€ëŠ¥í•´ì•¼ í•œë‹¤.
 */
 use pubs
 go
---1. note¿¡ recipe ¶ó´Â ±ÛÀÚ°¡ ÀÖ°í °¡°İÀÌ 10ÀÌ»ó 20ÀÌÇÏ.
+--1. noteì— recipe ë¼ëŠ” ê¸€ìê°€ ìˆê³  ê°€ê²©ì´ 10ì´ìƒ 20ì´í•˜.
 select * from titles
 where notes like '%recipe%' and price between 10 and 20
 go 
 
 
---2. ÃâÆÇÀÏÀÌ 1991³â 7¿ù ÀÌÈÄÀÌ°í, ¿ä¸®¿¡ °ü·ÃµÈ Ã¥ (type ÀÌ cook À¸·Î ³¡³­´Ù)
+--2. ì¶œíŒì¼ì´ 1991ë…„ 7ì›” ì´í›„ì´ê³ , ìš”ë¦¬ì— ê´€ë ¨ëœ ì±… (type ì´ cook ìœ¼ë¡œ ëë‚œë‹¤)
 select * from titles
 where pubdate > '1991-07-01' and type like '%cook'
 go
 
 
---3. ÆÇ¸Å °¡°İÀÌ NULL ÀÎ °ÍÀ» °¡Á®¿ÀµÇ, ¿ø·¡ °¡°İ(price)¿Í null °ªÀ» 0À¸·Î ¹Ù²Û '°¡°İ'À» ¾Æ·¡ °á°ú¿Í °°ÀÌ Ãâ·ÂÇÑ´Ù. 
+--3. íŒë§¤ ê°€ê²©ì´ NULL ì¸ ê²ƒì„ ê°€ì ¸ì˜¤ë˜, ì›ë˜ ê°€ê²©(price)ì™€ null ê°’ì„ 0ìœ¼ë¡œ ë°”ê¾¼ 'ê°€ê²©'ì„ ì•„ë˜ ê²°ê³¼ì™€ ê°™ì´ ì¶œë ¥í•œë‹¤. 
 /*
-Ã¥¹øÈ£	price	°¡°İ		title
+ì±…ë²ˆí˜¸	price	ê°€ê²©		title
 MC3026	NULL	0.00	The Psychology of Computer Cooking
 PC9999	NULL	0.00	Net Etiquette
 */
 
-select  Ã¥¹øÈ£, price, title from titles
-select Ã¥¹øÈ£, price ,ISNULL (price,0) as °¡°İ , title from titles
+select  ì±…ë²ˆí˜¸, price, title from titles
+select ì±…ë²ˆí˜¸, price ,ISNULL (price,0) as ê°€ê²© , title from titles
 where price is NULL
 go
 
---4. ÆÇ¸Å ¼ö·® 20±Ç ÀÌ»óÀÌ°í, °áÀçÁ¶°Ç(payterms)ÀÌ Net 60 ÀÌ°Å³ª, ON invoice ÀÎ °Í
+--4. íŒë§¤ ìˆ˜ëŸ‰ 20ê¶Œ ì´ìƒì´ê³ , ê²°ì¬ì¡°ê±´(payterms)ì´ Net 60 ì´ê±°ë‚˜, ON invoice ì¸ ê²ƒ
 select * from sales
 where 20 <= qty and payterms like 'Net 60'
 or 20 <= qty and payterms like 'on invoice'
 go
 
---5. ¼­Á¡º° ¸¹ÀÌ ÆÈ¸° ¼ø¼­´ë·Î Ãâ·ÂÇÑ´Ù. °á°ú´Â ¾Æ·¡¿Í ¶È °°¾Æ¾ß ÇÑ´Ù.
+--5. ì„œì ë³„ ë§ì´ íŒ”ë¦° ìˆœì„œëŒ€ë¡œ ì¶œë ¥í•œë‹¤. ê²°ê³¼ëŠ” ì•„ë˜ì™€ ë˜‘ ê°™ì•„ì•¼ í•œë‹¤.
 /*
 stor_id	qty	title_id
 6380	5	BU1032
